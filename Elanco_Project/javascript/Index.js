@@ -12,14 +12,17 @@ realFileBtn.addEventListener("change", function() {
         /[\/\\]([\w\d\s\.\-\(\)]+)$/
         )[1];
         customTxt.innerHTML = uploadFileName;
+        
         const reader = new FileReader();
 
         reader.addEventListener("load", () =>{
             localStorage.setItem("recent-image", reader.result);
         });
         reader.readAsDataURL(this.files[0]);
-
         storeImage();
+        const recentImageDataUrl = localStorage.getItem("recent-image");
+        export{recentImageDataUrl}
+
   } else {
     customTxt.innerHTML = "No file chosen, yet.";
   }
@@ -32,3 +35,5 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelector("#imgPreview").setAttribute("src", recentImageDataUrl);
     }
 });
+
+
