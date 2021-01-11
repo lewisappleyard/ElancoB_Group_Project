@@ -18,13 +18,22 @@
 
         <section>
             <h2>Main section of the body where the image upload and details will go</h2>
+
+            <form action="../uploadImage.php" method="post" enctype="multipart/form-data">
+                Select an image to upload: 
+                <input type="file" name = "fileToUpload" id="fileToUpload">
+                <input type="submit" value="Upload Image" name="submit">
+            </form>
         </section>
 
         <footer>
             <h2>Footer section for contact details of Elanco and possible "how to use" section</h2>
         </footer>
-        
+
     </div>
     </body>
+
+
+    <script src="../javascript/index.js"></script>
 
 </html>
