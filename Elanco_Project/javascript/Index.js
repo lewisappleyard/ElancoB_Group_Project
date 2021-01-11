@@ -1,7 +1,18 @@
-var url = "http://test.com/index";
+const realFileBtn = document.getElementById("real-file");
+const customBtn = document.getElementById("custom-button");
+const customTxt = document.getElementById("custom-text");
 
-function log(message){
-    console.log(message);
-}
+customBtn.addEventListener("click", function() {
+  realFileBtn.click();
+});
 
-module.exports.log = log;
+realFileBtn.addEventListener("change", function() {
+  if (realFileBtn.value) {
+    customTxt.innerHTML = realFileBtn.value.match(
+      /[\/\\]([\w\d\s\.\-\(\)]+)$/
+    )[1];
+  } else {
+    customTxt.innerHTML = "No file chosen, yet.";
+  }
+});
+  
