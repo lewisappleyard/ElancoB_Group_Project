@@ -28,17 +28,8 @@ section{
 	padding:0 10px 10px 0;
 }
 
-<<<<<<< HEAD
-=======
-#imgPreview {
-    display: block;
-    margin-left: auto;
-    margin-right: auto; 
-    width:80%;
-    height: auto;
-}
 
->>>>>>> c9c1123730b88a6745129a18aadbac3610c7bf54
+
 footer{
 	border-top:1px solid #ccc;
 	margin:20px 10px 10px 0;
@@ -48,11 +39,14 @@ footer{
 	font-style:italic;
 }
 
-<<<<<<< HEAD
-=======
+#imgPreview {
+    display: block;
+    margin-left: auto;
+    margin-right: auto; 
+    width:80%;
+    height: auto;
+}
 
-
->>>>>>> c9c1123730b88a6745129a18aadbac3610c7bf54
 #container{
     width:100%;
     margin-left:auto;
@@ -67,11 +61,6 @@ footer{
     background-color:#fff;
     border-right:2px solid #000;
     border-left:2px solid #000;
-<<<<<<< HEAD
-}
-
-
-=======
     border-bottom: 2px solid #000;
 }
 #custom-button {
@@ -115,7 +104,6 @@ footer{
     display:none;
     width:100%;
 }
->>>>>>> c9c1123730b88a6745129a18aadbac3610c7bf54
 
 
 #custom-button {
