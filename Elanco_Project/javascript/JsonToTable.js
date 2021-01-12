@@ -1,3 +1,5 @@
+/*
+
 const jsonToTable = require('json-to-table');
  
 
@@ -51,3 +53,5 @@ createReceiptTable: function() {
 //['Bob',  12345,         'Euphoria',      ''],
 //['Jon',  '',            '1234 Main St.', 'Arizona']
 //]
+
+*/
