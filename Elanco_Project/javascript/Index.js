@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const realFileBtn = document.getElementById("real-file");
 const customBtn = document.getElementById("custom-button");
 const customTxt = document.getElementById("custom-text");
@@ -74,3 +75,35 @@ function createTable() {
     body.appendChild(table);
     console.log("create table function has been run");
 }
+=======
+const inpFile = document.getElementById("inpFile")
+const previewContainer = document.getElementById("imagePreview")
+const previewImage = previewContainer.querySelector(".image-preview__image")
+const previewDefaultText = previewContainer.querySelector(".image-preview__default-text")
+
+inpFile.addEventListener("change", function(){
+  const file = this.files[0];
+
+  console.log(file);
+
+  if(file){
+    const reader = new FileReader();
+
+    previewDefaultText.style.display = "none";
+    previewImage.style.display = "block";
+
+    reader.addEventListener("load", function(){
+        previewImage.setAttribute("src", this.result);
+    });
+
+    reader.readAsDataURL(file);
+  }
+});
+
+
+tableBtn.addEventListener("click", function() {
+    //import { createReceiptTable } from './JsonToTable.mjs';
+    createReceiptTable();
+    console.log("table button has been pressed...");
+});
+>>>>>>> c9c1123730b88a6745129a18aadbac3610c7bf54
