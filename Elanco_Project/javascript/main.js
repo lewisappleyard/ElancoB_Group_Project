@@ -12,8 +12,8 @@ const client = new FormRecognizerClient(endpoint, new AzureKeyCredential(apiKey)
 
 async function recognizeContent() {
     //path.join(__dirname, "./assets/contoso-allinone.jpg");
-    //const formUrl = "https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/simple-invoice.png";
-    const formUrl = "C:\Users\tomfy\Desktop\ElancoB_Group_Project\Elanco_Project\assets\MountPleasantReceipt.png"
+    const formUrl = "https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/simple-invoice.png";
+    //const formUrl = "C:\Users\tomfy\Desktop\ElancoB_Group_Project\Elanco_Project\assets\MountPleasantReceipt.png"
     const poller = await client.beginRecognizeContentFromUrl(formUrl);
     const pages = await poller.pollUntilDone();
 
