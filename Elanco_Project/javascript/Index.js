@@ -21,3 +21,8 @@ inpFile.addEventListener("change", function(){
     reader.readAsDataURL(file);
   }
 });
+tableBtn.addEventListener("click", function() {
+    import { createReceiptTable } from './JsonToTable.mjs';
+    createReceiptTable();
+    console.log("table button has been pressed...");
+});
