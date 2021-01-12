@@ -20,9 +20,7 @@ realFileBtn.addEventListener("change", function() {
         });
         reader.readAsDataURL(this.files[0]);
         storeImage();
-        const recentImageDataUrl = localStorage.getItem("recent-image");
-        export{recentImageDataUrl}
-
+        
   } else {
     customTxt.innerHTML = "No file chosen, yet.";
   }
@@ -33,6 +31,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (recentImageDataUrl){
         document.querySelector("#imgPreview").setAttribute("src", recentImageDataUrl);
+        
+        var img = new Image();
+        img = recentImageDataUrl;
+        img.onclick = function() {
+          window.location.href = 'http://127.0.0.1:5500/Elanco_Project/assets/';
+        };
+        
     }
 });
 
