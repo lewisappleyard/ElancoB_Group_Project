@@ -3,6 +3,8 @@ const previewContainer = document.getElementById("imagePreview")
 const previewImage = previewContainer.querySelector(".image-preview__image")
 const previewDefaultText = previewContainer.querySelector(".image-preview__default-text")
 
+const tableCreator = require('./JsonToTable');
+
 inpFile.addEventListener("change", function(){
   const file = this.files[0];
 
@@ -24,7 +26,6 @@ inpFile.addEventListener("change", function(){
 
 
 tableBtn.addEventListener("click", function() {
-    //import { createReceiptTable } from './JsonToTable.mjs';
-    createReceiptTable();
+    tableCreator.createReceiptTable();
     console.log("table button has been pressed...");
 });

@@ -14,7 +14,8 @@ const myRecords = [
 
 const tabled = jsonToTable(myRecords, 'Default String');
  
-export function createReceiptTable() {
+module.exports = {
+createReceiptTable: function() {
     var body = document.body;
     var table = document.createElement('table');
     table.style.width = '75%';
@@ -41,6 +42,7 @@ export function createReceiptTable() {
     }
     body.appendChild(table);
     console.log("create table function has been run");
+}
 }
 
 //tabled will be an array of arrays like this
