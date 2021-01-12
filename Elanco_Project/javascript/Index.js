@@ -1,10 +1,10 @@
-<<<<<<< HEAD
 const realFileBtn = document.getElementById("real-file");
 const customBtn = document.getElementById("custom-button");
 const customTxt = document.getElementById("custom-text");
-const tableBtn = document.getElementById("tablebutton");
+const tableBtn =  document.getElementById("tablebutton");
 
 customBtn.addEventListener("click", function() {
+    console.log("Upload image button pressed!");
     realFileBtn.click();
 });
   
@@ -41,7 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 tableBtn.addEventListener("click", function() {
     createTable();
-    console.log("table button has been pressed...");
 });
 
 
@@ -53,7 +52,6 @@ function createTable() {
     table.style.width = '75%';
     table.style.border = '1px solid black';
     table.setAttribute('border', '1');
-    var tableBody = document.createElement('tableBody');
     for (var i = 0; i < 3; i++)
     {
         var tRow = table.insertRow();
@@ -75,7 +73,7 @@ function createTable() {
     body.appendChild(table);
     console.log("create table function has been run");
 }
-=======
+
 const inpFile = document.getElementById("inpFile")
 const previewContainer = document.getElementById("imagePreview")
 const previewImage = previewContainer.querySelector(".image-preview__image")
@@ -99,11 +97,3 @@ inpFile.addEventListener("change", function(){
     reader.readAsDataURL(file);
   }
 });
-
-
-tableBtn.addEventListener("click", function() {
-    //import { createReceiptTable } from './JsonToTable.mjs';
-    createReceiptTable();
-    console.log("table button has been pressed...");
-});
->>>>>>> c9c1123730b88a6745129a18aadbac3610c7bf54
