@@ -22,7 +22,7 @@ realFileBtn.addEventListener("change", function() {
         reader.readAsDataURL(this.files[0]);
         storeImage();
         const recentImageDataUrl = localStorage.getItem("recent-image");
-        //export{recentImageDataUrl}
+        export{recentImageDataUrl}
 
   } else {
     customTxt.innerHTML = "No file chosen, yet.";
