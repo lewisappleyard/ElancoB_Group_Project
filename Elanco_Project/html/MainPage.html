@@ -5,9 +5,10 @@
         <meta charset="utf-8">
         <title>Elanco Project: Main Page</title>
         <link href="../css/website.css" rel="stylesheet" type="text/css">
-    </head>>
+    </head>
 
     <body>
+    <div id="container">
 
         <header>
             <h1>This is the title bar/area for the page</h1>
@@ -20,9 +21,11 @@
         </section>
 
         <section>
-            <input type="file" id="real-file" hidden="hidden" />
-            <button type="button" id="custom-button">CHOOSE A FILE</button>
-            <span id="custom-text">No file chosen, yet.</span>
+            <input type="file" name="inpFile" id="inpFile">
+            <div class="image-preview" id="imagePreview">
+                <img src="" alt="Image Preview" class="image-preview__image">
+                <span class="image-preview__default-text">Image Preview</span>
+            </div>
         </section>
 
         <section>
@@ -34,8 +37,12 @@
             <h2>Footer section for contact details of Elanco and possible "how to use" section</h2>
         </footer>
 
+    </div>
     </body>
     
     <script type="text/javascript" src="../javascript/Index.js"></script>
+
+
+    <script src="../javascript/index.js"></script>
 
 </html>
