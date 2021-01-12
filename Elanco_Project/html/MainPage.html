@@ -20,11 +20,12 @@
             <h2>Main section of the body where the image upload and details will go</h2>
         </section>
 
-        <section id="uploadSection">
-            <input type="file" id="real-file" hidden="hidden" />
-            <button type="button" id="custom-button">CHOOSE A FILE</button>
-            <span id="custom-text">No file chosen, yet.</span>
-            <img id="imgPreview" src="" alt="preview">
+        <section>
+            <input type="file" name="inpFile" id="inpFile">
+            <div class="image-preview" id="imagePreview">
+                <img src="" alt="Image Preview" class="image-preview__image">
+                <span class="image-preview__default-text">Image Preview</span>
+            </div>
         </section>
         <footer>
             <h2>Footer section for contact details of Elanco and possible "how to use" section</h2>
