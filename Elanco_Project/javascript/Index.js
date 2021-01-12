@@ -1,7 +1,7 @@
 const realFileBtn = document.getElementById("real-file");
 const customBtn = document.getElementById("custom-button");
 const customTxt = document.getElementById("custom-text");
-const tableBtn = document.getElementById("table-button");
+const tableBtn = document.getElementById("tablebutton");
 
 customBtn.addEventListener("click", function() {
     realFileBtn.click();
@@ -39,7 +39,38 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 tableBtn.addEventListener("click", function() {
-    import { createReceiptTable } from './JsonToTable.mjs';
-    createReceiptTable();
+    createTable();
     console.log("table button has been pressed...");
 });
+
+
+
+
+function createTable() {
+    var body = document.body;
+    var table = document.createElement('table');
+    table.style.width = '75%';
+    table.style.border = '1px solid black';
+    table.setAttribute('border', '1');
+    var tableBody = document.createElement('tableBody');
+    for (var i = 0; i < 3; i++)
+    {
+        var tRow = table.insertRow();
+        for (var j = 0; j < 2; j++)
+        {
+            if (i == 2 && j == 1) {
+                break;
+            }
+            else {
+                var tData = tRow.insertCell();
+                tData.appendChild(document.createTextNode('data here'));
+                tData.style.border = '1px solid black';
+                if (i == 1 && j == 1) {
+                    tData.setAttribute('rowspan', '2');
+                }
+            }
+        }
+    }
+    body.appendChild(table);
+    console.log("create table function has been run");
+}
