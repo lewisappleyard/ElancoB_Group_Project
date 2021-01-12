@@ -1,5 +1,7 @@
 const jsonToTable = require('json-to-table');
  
+
+
 const myRecords = [
 {
     name:'Bob',
@@ -12,7 +14,7 @@ const myRecords = [
 
 const tabled = jsonToTable(myRecords, 'Default String');
  
-function createReceiptTable() {
+export function createReceiptTable() {
     var body = document.body;
     var table = document.createElement('table');
     table.style.width = '75%';
@@ -38,10 +40,8 @@ function createReceiptTable() {
         }
     }
     body.appendChild(table);
+    console.log("create table function has been run");
 }
-
-createReceiptTable();
-
 
 //tabled will be an array of arrays like this
 //[
