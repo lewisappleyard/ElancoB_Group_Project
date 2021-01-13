@@ -1,7 +1,9 @@
-const inpFile = document.getElementById("inpFile")
+import {writeUrlTxt} from './main.js';
 const previewContainer = document.getElementById("imagePreview")
 const previewImage = previewContainer.querySelector(".image-preview__image")
 const previewDefaultText = previewContainer.querySelector(".image-preview__default-text")
+const inpFile = document.getElementById("inpFile")
+const tableBtn = document.getElementById("table-button");
 
 inpFile.addEventListener("change", function(){
   const file = this.files[0];
@@ -17,7 +19,7 @@ inpFile.addEventListener("change", function(){
     reader.addEventListener("load", function(){
         previewImage.setAttribute("src", this.result);
     });
-
+    
     reader.readAsDataURL(file);
   }
 });
@@ -25,6 +27,7 @@ inpFile.addEventListener("change", function(){
 
 tableBtn.addEventListener("click", function() {
     //import { createReceiptTable } from './JsonToTable.mjs';
-    createReceiptTable();
+    //createReceiptTable();
     console.log("table button has been pressed...");
+    writeUrlTxt();
 });

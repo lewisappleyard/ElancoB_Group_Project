@@ -13,9 +13,11 @@ const client = new FormRecognizerClient(endpoint, new AzureKeyCredential(apiKey)
 async function recognizeContent() {
     //path.join(__dirname, "./assets/contoso-allinone.jpg");
     const formUrl = "https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/simple-invoice.png";
+
     //const formUrl = "C:\Users\tomfy\Desktop\ElancoB_Group_Project\Elanco_Project\assets\MountPleasantReceipt.png"
     const poller = await client.beginRecognizeContentFromUrl(formUrl);
     const pages = await poller.pollUntilDone();
+    console.log(pages);
 
     if (!pages || pages.length === 0) {
         throw new Error("Expecting non-empty list of pages!");
@@ -36,3 +38,11 @@ async function recognizeContent() {
 recognizeContent().catch((err) => {
     console.error("The sample encountered an error:", err);
 });
+
+export function writeUrlTxt(){
+    fs = require('fs');
+    fs.writeFile('helloworld.txt', 'Hello World!', function (err) {
+      if (err) return console.log(err);
+      console.log('Hello World > helloworld.txt');
+    });
+}
