@@ -22,16 +22,6 @@ async function recognizeContent() {
     }
 
     writeJSONtofile(pages);
-    for (const page of pages) {
-        console.log(
-            `Page ${page.pageNumber}: width ${page.width} and height ${page.height} with unit ${page.unit}`
-        );
-        for (const table of page.tables) {
-            for (const cell of table.cells) {
-                console.log(`cell [${cell.rowIndex},${cell.columnIndex}] has text ${cell.text}`);
-            }
-        }
-    }
 }
 
 recognizeContent().catch((err) => {
