@@ -1,0 +1,20 @@
+{
+    "products" : [
+        {
+            "name" : "product 1",
+            "price" : "£10"
+        } ,
+        {
+            "name" : "product 2",
+            "price" : "£15"
+        } ,
+        {
+            "name" : "product 3",
+            "price" : "£20"
+        } ,
+        {
+            "name" : "product 4",
+            "price" : "£25"
+        }
+    ]
+}
