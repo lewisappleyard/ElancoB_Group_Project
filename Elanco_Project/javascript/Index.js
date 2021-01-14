@@ -1,3 +1,4 @@
+import ApiCall from './main.js';
 const inpFile = document.getElementById("inpFile")
 const previewContainer = document.getElementById("imagePreview")
 const previewImage = previewContainer.querySelector(".image-preview__image")
@@ -25,6 +26,7 @@ inpFile.addEventListener("change", function(){
 
 tableBtn.addEventListener("click", function() {
     //import { createReceiptTable } from './JsonToTable.mjs';
-    createReceiptTable();
+    //createReceiptTable();
     console.log("table button has been pressed...");
+    ApiCall();
 });
