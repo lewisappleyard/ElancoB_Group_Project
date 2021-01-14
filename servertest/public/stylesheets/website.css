@@ -1,0 +1,135 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10;
+    background-color: #aaa;
+    display: flex;
+    text-align: center;
+}
+
+h1, h2, h3{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header{
+	background-color:#5c5c5c;
+	border-radius:8px;
+	display:flex;
+	justify-content: space-between;
+	box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
+section{
+	padding:0 10px 10px 0;
+}
+
+#imgPreview {
+    display: block;
+    margin-left: auto;
+    margin-right: auto; 
+    width:80%;
+    height: auto;
+}
+
+footer{
+	border-top:1px solid #ccc;
+	margin:20px 10px 10px 0;
+	clear:both;	
+	font-size:0.8em;
+	text-align:center;
+	font-style:italic;
+}
+
+
+
+#container{
+    width:100%;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:0px;
+    margin-bottom:0px;
+	max-width:1200px;
+    min-width:600px;
+    height:auto;
+    min-height:100%;
+    padding:15px;
+    background-color:#fff;
+    border-right:2px solid #000;
+    border-left:2px solid #000;
+    border-bottom: 2px solid #000;
+}
+#custom-button {
+    padding: 10px;
+    color: white;
+    background-color: #009578;
+    border: 1px solid #000;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  #custom-button:hover {
+    background-color: #00b28f;
+  }
+  
+  #custom-text {
+    margin-left: 10px;
+    font-family: sans-serif;
+    color: #aaa;
+  }
+  
+#receiptTable{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  justify-content: center;
+  border: 2px;
+}
+
+.image-preview{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+    min-height: 100px;
+    border: 2px solid #dddddd;
+    margin-top: 15px;
+
+    /*Default text*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #cccccc;
+}
+
+.image-preview__image{
+    display:none;
+    width:100%;
+}
+
+
+#custom-button {
+    padding: 10px;
+    color: white;
+    background-color: #009578;
+    border: 1px solid #000;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  #custom-button:hover {
+    background-color: #00b28f;
+  }
+  
+  #custom-text {
+    margin-left: 10px;
+    font-family: sans-serif;
+    color: #aaa;
+  }
+  
