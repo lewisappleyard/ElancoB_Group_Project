@@ -3,10 +3,12 @@ var response;
 //var tRow = new Array();
 xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
+        console.log("THIS LINE");
         console.log(xhttp.responseText);
+        tableObject = JSON.parse(xhttp.responseText);
     }
 }
-xhttp.open("GET", "ExampleJson.json", true);
+xhttp.open("GET", "APIreturn.json", true);
 xhttp.send();
 
 const button = document.getElementById("table-button");
@@ -29,6 +31,14 @@ button.addEventListener("click", function()
 });
 
 function createTable(arrayData) {
+    console.log(arrayData);
+    console.log("SPLIT HERE");
+    console.log(arrayData[0].fields.Items.value); // This is the name of one receipt item so this array needs looping
+
+    var itemValues = arrayData[0].fields.Items.value; // use itemValues[0].value.Name.value for product names, use itemValues[0].value.TotalPrice.valueData.text
+    var recieptDate = arrayData[0].fields.TransactionDate.valueData.text;
+    
+
     var table = document.getElementById("receiptTable");
     //var temp = "createdTable";
     //table.id = temp;
@@ -43,20 +53,24 @@ function createTable(arrayData) {
     var newBody = document.createElement("tbody");
     var tRow = new Array();
     var tempCount = 0;
-    for (var property in arrayData.product){
+    for (var property in itemValues){
         
         console.log(property);
+        console.log("CHECK HERE");
         tRow.push(newBody.insertRow());
         var nameData = tRow[tRow.length-1].insertCell();
         var priceData = tRow[tRow.length-1].insertCell();
+        var itemDate = tRow[tRow.length-1].insertCell();
         var tempString = "Row";
         tRow[tRow.length-1].id = tempString.concat(tableCount);
         //console.log(tempString.concat(tableCount))
 
         var nameInput = nameData.appendChild(document.createElement("input"));
-        nameInput.value = arrayData.product[property].name;
+        nameInput.value = itemValues[property].value.Name.value; //arrayData.product[property].name;
         var priceInput = priceData.appendChild(document.createElement("input"));
-        priceInput.value = arrayData.product[property].price;
+        priceInput.value = itemValues[property].value.TotalPrice.valueData.text; //arrayData.product[property].price;
+        var dateInput = itemDate.appendChild(document.createElement("input"));
+        dateInput.value = recieptDate;
 
         
 

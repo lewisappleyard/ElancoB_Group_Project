@@ -2,6 +2,7 @@ var xhttp = new XMLHttpRequest();
 var response;
 xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
+        console.log("THIS LINE")
         console.log(xhttp.responseText);
     }
 }
