@@ -1,5 +1,6 @@
 var xhttp = new XMLHttpRequest();
 var response;
+const tableBtnText = document.getElementById("tableBtnText")
 //var tRow = new Array();
 xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -10,7 +11,6 @@ xhttp.onreadystatechange = function() {
 }
 xhttp.open("GET", "APIreturn.json", true);
 xhttp.send();
-
 const button = document.getElementById("table-button");
 
 var tableCount = 0;
@@ -25,6 +25,7 @@ var tableObject =   { "product" : [
 
 button.addEventListener("click", function()
 {
+    tableBtnText.style.display = "none";
     createTable(tableObject);
 
     console.log("button pressed");
