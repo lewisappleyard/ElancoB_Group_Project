@@ -6,6 +6,8 @@
             Create table function may need reformatting, so that it can handle more JSON structures or possibly handle them dynamically, but the current layout and "flow" of the function works well
             The promptSave function currently asks the user to save a JSON file, which is useless to the customer, needs the format changing to something more accesible like a PDF,
             The best goal output of the promptSave function would be some form of PDF rebate form, with valid areas already filled out with the data
+
+            For the full project, need to connect
 */
 
 var xhttp = new XMLHttpRequest();
@@ -61,25 +63,28 @@ function checkReturned(arrayData) {
 
 // This is where the table is saved, will work for now but needs possible data verification to validate values, example being the date and price being in the correct format, etc.
 function saveTable() {
-    var newSave = { "Customer" : [] };
+    var q = "\""; // q is used as a quick var name to get a quote mark for formatting the following csv file
+    var newSave = q+"Product Name"+q+","+q+"Product Price"+q+","+q+"Product Date"+q+",\n";
+    
 
     for (row in tRow) {
         if (tRow[row].id != "DELETED") {
             var prodName = document.getElementById("name".concat(row)).value;
             var prodPrice = document.getElementById("price".concat(row)).value;
             var prodDate = document.getElementById("date".concat(row)).value;
-            newSave.Customer.push({ "name" : prodName, "price" : prodPrice, "date" : prodDate });
+            //newSave.Customer.push({ "name" : prodName, "price" : prodPrice, "date" : prodDate }); // OLD JSON FILE FORMATTING, IGNORE/REMOVE
+            newSave = newSave.concat(q,prodName,q,",",q,prodPrice,q,",",q,prodDate,q,",\n");
         }
     }
+    //var stringSave = JSON.stringify(newSave); // OLD JSON FORMATTING, IGNORE/REMOVE
 
-    var stringSave = JSON.stringify(newSave);
-
-    return stringSave;
+    console.log(newSave);
+    return newSave;
 }
 
 // Prompts the user to download the JSON file in a text format, this is temporary and will need to be changed to a better file format
 function promptDownload(saveJSONString) {
-    var filename = "saveTest.json";
+    var filename = "saveTest.csv";
 
     var element = document.createElement("a");
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(saveJSONString));
