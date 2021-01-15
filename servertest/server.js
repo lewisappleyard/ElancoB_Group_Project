@@ -12,8 +12,6 @@ const server = http.createServer((req, res) => {
         console.log('hello');
     });
 
-    greet();
-    greet();
     //set header content type
     res.setHeader('Content-Type', 'text/html');
     let path = './html/';
