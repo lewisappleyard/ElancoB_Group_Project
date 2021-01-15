@@ -1,0 +1,228 @@
+{
+    "status": "succeeded",
+    "createdDateTime": "2021-01-12T14:34:45Z",
+    "lastUpdatedDateTime": "2021-01-12T14:34:48Z",
+    "analyzeResult": {
+        "version": "2.0.0",
+        "readResults": [
+            {
+                "page": 1,
+                "angle": -0.538,
+                "width": 1080,
+                "height": 1600,
+                "unit": "pixel",
+                "language": "en"
+            }
+        ],
+        "documentResults": [
+            {
+                "docType": "prebuilt:receipt",
+                "pageRange": [
+                    1,
+                    1
+                ],
+                "fields": {
+                    "ReceiptType": {
+                        "type": "string",
+                        "valueString": "Itemized",
+                        "confidence": 0.99
+                    },
+                    "TransactionDate": {
+                        "type": "date",
+                        "text": "13/03/2010",
+                        "boundingBox": [
+                            142.7,
+                            254.5,
+                            278.7,
+                            253,
+                            279,
+                            281,
+                            143,
+                            282.5
+                        ],
+                        "page": 1,
+                        "confidence": 0.863
+                    },
+                    "Items": {
+                        "type": "array",
+                        "valueArray": [
+                            {
+                                "type": "object",
+                                "valueObject": {
+                                    "Name": {
+                                        "type": "string",
+                                        "valueString": "Consultation",
+                                        "text": "Consultation",
+                                        "boundingBox": [
+                                            7.8,
+                                            530,
+                                            155,
+                                            529,
+                                            155.2,
+                                            555,
+                                            8,
+                                            556
+                                        ],
+                                        "page": 1,
+                                        "confidence": 0.343
+                                    },
+                                    "TotalPrice": {
+                                        "type": "number",
+                                        "valueNumber": 32.1,
+                                        "text": "32.10",
+                                        "boundingBox": [
+                                            1011,
+                                            521.5,
+                                            1077,
+                                            522,
+                                            1076.8,
+                                            549,
+                                            1010.8,
+                                            548.5
+                                        ],
+                                        "page": 1,
+                                        "confidence": 0.693
+                                    }
+                                }
+                            },
+                            {
+                                "type": "object",
+                                "valueObject": {
+                                    "Name": {
+                                        "type": "string",
+                                        "valueString": "Slit Lamp Examination HYL",
+                                        "text": "Slit Lamp Examination HYL",
+                                        "boundingBox": [
+                                            7,
+                                            597,
+                                            639,
+                                            597,
+                                            639,
+                                            629,
+                                            7,
+                                            629
+                                        ],
+                                        "page": 1,
+                                        "confidence": 0.224
+                                    },
+                                    "TotalPrice": {
+                                        "type": "number",
+                                        "valueNumber": 21.4,
+                                        "text": "21.40",
+                                        "boundingBox": [
+                                            1011.6,
+                                            595,
+                                            1075,
+                                            594,
+                                            1075.4,
+                                            621,
+                                            1012,
+                                            622
+                                        ],
+                                        "page": 1,
+                                        "confidence": 0.92
+                                    }
+                                }
+                            },
+                            {
+                                "type": "object",
+                                "valueObject": {
+                                    "Name": {
+                                        "type": "string",
+                                        "valueString": "Tonometry",
+                                        "text": "Tonometry",
+                                        "boundingBox": [
+                                            8,
+                                            676,
+                                            134.4,
+                                            678,
+                                            134,
+                                            704,
+                                            7.6,
+                                            702
+                                        ],
+                                        "page": 1,
+                                        "confidence": 0.403
+                                    },
+                                    "TotalPrice": {
+                                        "type": "number",
+                                        "valueNumber": 21.4,
+                                        "text": "21.40",
+                                        "boundingBox": [
+                                            1011.6,
+                                            667,
+                                            1076.6,
+                                            666,
+                                            1077,
+                                            693,
+                                            1012,
+                                            694
+                                        ],
+                                        "page": 1,
+                                        "confidence": 0.642
+                                    }
+                                }
+                            },
+                            {
+                                "type": "object",
+                                "valueObject": {
+                                    "Name": {
+                                        "type": "string",
+                                        "valueString": "Gentapro (Fortified) 5ml HYL",
+                                        "text": "Gentapro (Fortified) 5ml HYL",
+                                        "boundingBox": [
+                                            7.7,
+                                            745.4,
+                                            644,
+                                            740,
+                                            644.3,
+                                            772.6,
+                                            8,
+                                            778
+                                        ],
+                                        "page": 1,
+                                        "confidence": 0.217
+                                    },
+                                    "TotalPrice": {
+                                        "type": "number",
+                                        "valueNumber": 16.05,
+                                        "text": "16.05",
+                                        "boundingBox": [
+                                            1014,
+                                            741,
+                                            1077,
+                                            741,
+                                            1077,
+                                            767,
+                                            1014,
+                                            767
+                                        ],
+                                        "page": 1,
+                                        "confidence": 0.587
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    "Total": {
+                        "type": "number",
+                        "valueNumber": 91.48,
+                        "text": "91.48",
+                        "boundingBox": [
+                            1003,
+                            989,
+                            1068.8,
+                            988.5,
+                            1069,
+                            1014.5,
+                            1003.2,
+                            1015
+                        ],
+                        "page": 1,
+                        "confidence": 0.693
+                    }
+                }
+            }
+        ]
+    }
+}
