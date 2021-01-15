@@ -1,20 +1,34 @@
+/*
+    TODO list for this section:
+            Make sure the http request is to the returned JSON, not the temporary placeholder JSON
+            Make sure to verify the format of the JSON that is returned before processing, and make sure to inform the user of an error if one occurs
+            The save table function needs to validate any user inputs so that they are in the correct format to save, and if not then alert them
+            Create table function may need reformatting, so that it can handle more JSON structures or possibly handle them dynamically, but the current layout and "flow" of the function works well
+            The promptSave function currently asks the user to save a JSON file, which is useless to the customer, needs the format changing to something more accesible like a PDF,
+            The best goal output of the promptSave function would be some form of PDF rebate form, with valid areas already filled out with the data
+*/
+
 var xhttp = new XMLHttpRequest();
 var response;
 const tableBtnText = document.getElementById("tableBtnText")
-//var tRow = new Array();
+
+var tRow = new Array();
+
 xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-        console.log("THIS LINE");
-        console.log(xhttp.responseText);
+        //console.log(xhttp.responseText);
         tableObject = JSON.parse(xhttp.responseText);
     }
 }
 xhttp.open("GET", "APIreturn.json", true);
 xhttp.send();
+
 const button = document.getElementById("table-button");
+const saveBtn = document.getElementById("save-button");
 
-var tableCount = 0;
+var rowCount = 0;
 
+// LEAVE THIS HERE FOR NOW CAN BE USED LATER!
 var tableObject =   { "product" : [
                         {"name":"product1","price":"\xA320"}, // \xA3 is the literal string symbol for "£", where just writing the pound symbol wont work
                         {"name":"product2","price":"\xA325"},
@@ -25,88 +39,123 @@ var tableObject =   { "product" : [
 
 button.addEventListener("click", function()
 {
+    console.log("Submit pressed");
+
     tableBtnText.style.display = "none";
     createTable(tableObject);
-
-    console.log("button pressed");
 });
 
+saveBtn.addEventListener("click", function() {
+    console.log("Save pressed")
+
+    var temp = saveTable();
+    promptDownload(temp);
+});
+
+
+
+// This function will eventually do some checks on the returned JSON file so that it is in the correct formatting
+function checkReturned(arrayData) {
+    
+}
+
+// This is where the table is saved, will work for now but needs possible data verification to validate values, example being the date and price being in the correct format, etc.
+function saveTable() {
+    var newSave = { "Customer" : [] };
+
+    for (row in tRow) {
+        if (tRow[row].id != "DELETED") {
+            var prodName = document.getElementById("name".concat(row)).value;
+            var prodPrice = document.getElementById("price".concat(row)).value;
+            var prodDate = document.getElementById("date".concat(row)).value;
+            newSave.Customer.push({ "name" : prodName, "price" : prodPrice, "date" : prodDate });
+        }
+    }
+
+    var stringSave = JSON.stringify(newSave);
+
+    return stringSave;
+}
+
+// Prompts the user to download the JSON file in a text format, this is temporary and will need to be changed to a better file format
+function promptDownload(saveJSONString) {
+    var filename = "saveTest.json";
+
+    var element = document.createElement("a");
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(saveJSONString));
+    element.setAttribute("download", filename);
+
+    element.style.display = "none";
+
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+}
+
 function createTable(arrayData) {
+    /* These logs were used for testing, left in case more testing is needed
     console.log(arrayData);
     console.log("SPLIT HERE");
     console.log(arrayData[0].fields.Items.value); // This is the name of one receipt item so this array needs looping
+    */
 
-    var itemValues = arrayData[0].fields.Items.value; // use itemValues[0].value.Name.value for product names, use itemValues[0].value.TotalPrice.valueData.text
+    var itemValues = arrayData[0].fields.Items.value; // use .value.Name.value for product names, use .value.TotalPrice.valueData.text
     var recieptDate = arrayData[0].fields.TransactionDate.valueData.text;
     
-
     var table = document.getElementById("receiptTable");
-    //var temp = "createdTable";
-    //table.id = temp;
-    /*
-    var tRow = `<tr>
-                <td>Name</td>
-                <td>Price</td>
-                </tr>`;
-
-    table.innerHTML += tRow; */
 
     var newBody = document.createElement("tbody");
-    var tRow = new Array();
-    var tempCount = 0;
-    for (var property in itemValues){
-        
-        console.log(property);
-        console.log("CHECK HERE");
+
+    for (var property in itemValues)
+    {
+        // Below creates a new row within the table body, with a cell for each data type, and stores it in the global array of rows as well as give it a unique ID from the global row count
         tRow.push(newBody.insertRow());
         var nameData = tRow[tRow.length-1].insertCell();
         var priceData = tRow[tRow.length-1].insertCell();
         var itemDate = tRow[tRow.length-1].insertCell();
-        var tempString = "Row";
-        tRow[tRow.length-1].id = tempString.concat(tableCount);
-        //console.log(tempString.concat(tableCount))
+        tRow[tRow.length-1].id = "row".concat(rowCount);
 
+        // Below populates the new cells of the row with data returned, currently very restricted and not flexible based on returned JSON format, possible improvement can be made here
         var nameInput = nameData.appendChild(document.createElement("input"));
-        nameInput.value = itemValues[property].value.Name.value; //arrayData.product[property].name;
+        nameInput.value = itemValues[property].value.Name.value;
+        nameInput.id = "name".concat(rowCount);
         var priceInput = priceData.appendChild(document.createElement("input"));
-        priceInput.value = itemValues[property].value.TotalPrice.valueData.text; //arrayData.product[property].price;
+        priceInput.value = itemValues[property].value.TotalPrice.valueData.text;
+        priceInput.id = "price".concat(rowCount);
         var dateInput = itemDate.appendChild(document.createElement("input"));
         dateInput.value = recieptDate;
+        dateInput.id = "date".concat(rowCount);
 
-        
-
+        // Below creates a new button for the row, that will delete the row when pressed,
+        // meaning the user is free to update and change the table once an API call has been returned and the table produced
         var newButton = document.createElement("input");
         newButton.type = "button";
-        newButton.id = "deleteRow".concat(tableCount);
+        newButton.id = "deleteRow".concat(rowCount);
         newButton.value = "Delete Row";
-        newButton.arrayID = tempCount++;
+        newButton.arrayID = rowCount;
         console.log(tRow);
         console.log(tRow[tRow.length-1].id);
-        newButton.onclick = function() { deleteRow(newBody, tRow[this.arrayID].id) };
+        newButton.onclick = function() { deleteRow(newBody, tRow[this.arrayID].id, this.id) };
         var buttonSpace = tRow[tRow.length -1].insertCell();
         buttonSpace.appendChild(newButton);
         
-        tableCount += 1;
+        // increment row count, as a way to keep track of all of the rows that exist currently within the table
+        rowCount += 1;
     }
     
     table.appendChild(newBody);
 
     console.log("row and button made!");
-    console.log(tableCount);
+    console.log(rowCount);
 }
 
+function deleteRow(tableBody, tableRow, rowID) {
+    console.log(tableRow, rowID);
 
+    // First, remove the row that needs to be deleted from the webpage
+    tableBody.removeChild(document.getElementById(tableRow));
 
-function deleteTable(tableBody, tableRow) {
-    var parentTable = document.getElementById("tableHolder");
-
-    parentTable.removeChild(tableBody); // This removechild for the row also removes the button, because the button is a child of the tablebody that is passed to the function
-}
-
-function deleteRow(tableBody, tableRow) {
-    console.log(tableRow);
-    var temp = document.getElementById(tableRow);
-    //console.log(temp);
-    tableBody.removeChild(temp);
-    //temp.remove();
+    // Then, make sure the row is marked as deleted in the row array, so it isn't saved when the user wishes to save their table data
+    var temp = rowID.replace("deleteRow", "");
+    tRow[temp].id = "DELETED";
 }
