@@ -13,12 +13,12 @@ const button = document.getElementById("table-button");
 
 var tableCount = 0;
 
-var tableObject =   [
+var tableObject =   { "product" : [
                         {"name":"product1","price":"\xA320"}, // \xA3 is the literal string symbol for "£", where just writing the pound symbol wont work
                         {"name":"product2","price":"\xA325"},
                         {"name":"product3","price":"\xA315"},
                         {"name":"product4","price":"\xA330"},
-                    ];
+                    ]};
 
 
 button.addEventListener("click", function()
@@ -43,7 +43,7 @@ function createTable(arrayData) {
     var newBody = document.createElement("tbody");
     var tRow = new Array();
     var tempCount = 0;
-    for (var property in tableObject){
+    for (var property in arrayData.product){
         
         console.log(property);
         tRow.push(newBody.insertRow());
@@ -53,8 +53,12 @@ function createTable(arrayData) {
         tRow[tRow.length-1].id = tempString.concat(tableCount);
         //console.log(tempString.concat(tableCount))
 
-        nameData.appendChild(document.createTextNode(property.name));
-        priceData.appendChild(document.createTextNode(property.price));
+        var nameInput = nameData.appendChild(document.createElement("input"));
+        nameInput.value = arrayData.product[property].name;
+        var priceInput = priceData.appendChild(document.createElement("input"));
+        priceInput.value = arrayData.product[property].price;
+
+        
 
         var newButton = document.createElement("input");
         newButton.type = "button";

@@ -50,8 +50,8 @@ function createTable(arrayData) {
         var nameData = tRow.insertCell();
         var priceData = tRow.insertCell();
 
-        nameData.appendChild(document.createTextNode(property.name));
-        priceData.appendChild(document.createTextNode(property.price));
+        nameData.appendChild(document.createElement("input"));
+        priceData.appendChild(document.createElement("input"));
 
         var newButton = document.createElement("input");
         newButton.type = "button";
