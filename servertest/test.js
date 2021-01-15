@@ -4,6 +4,7 @@ const dotenv = require('dotenv').config()
 const express = require('express');
 const fileUpload = require('express-fileupload');
 const fetch = require('node-fetch');
+const path = require('path');
 
 
 const PORT = process.env.PORT;
@@ -12,8 +13,8 @@ const AZURE_KEY = process.env.AZURE_KEY;
 
 
 const app = express();
-
-app.use(express.static('static'));
+app.set('view engine', 'ejs');
+app.use(express.static('public'));
 
 app.use(fileUpload());
 
@@ -25,7 +26,7 @@ function sleep(ms) {
 }
 
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/static/index.html'));
+    res.render('index')
 });
 
 
