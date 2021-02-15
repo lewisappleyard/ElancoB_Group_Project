@@ -18,15 +18,12 @@
 
 
 
-
-
-
-var xhttp = new XMLHttpRequest();
+var tRow = new Array();
 var response;
 const tableBtnText = document.getElementById("tableBtnText")
 
-var tRow = new Array();
 
+/*var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         //console.log(xhttp.responseText);
@@ -34,7 +31,7 @@ xhttp.onreadystatechange = function() {
     }
 }
 xhttp.open("GET", "APIreturn.json", true);
-xhttp.send();
+xhttp.send();*/
 
 const button = document.getElementById("table-button");
 const saveBtn = document.getElementById("save-button");
