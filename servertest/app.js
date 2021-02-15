@@ -24,6 +24,9 @@ app.use((req, res, next) => {
 app.get('/', (req, res) => {
     res.render('index');
 });
+app.get('/howto', (req, res) => {
+    res.render('howto');
+});
 
 //404 page
 app.use((req, res) => {

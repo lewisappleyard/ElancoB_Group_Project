@@ -5,32 +5,30 @@ html, body {
 }
 
 body{
-    font-family: Arial, Helvetica,'Roboto', sans-serif;;
-    font-size: 10px;
-    background-color: #aaa;
+    font-family: Arial, Helvetica,'Roboto', sans-serif;
+    font-size: 16px; 
     display: flex;
     text-align: center;
+    background-color: gray;
 }
 
-#container{
+#container{  
+  display: flex;
+  flex-direction: column;
   width:100%;
+  height:auto;
   margin-left:auto;
   margin-right:auto;
   margin-top:0px;
   margin-bottom:0px;
-  max-width:1000px;
   min-width:400px;
-  height:auto;
-  min-height:100%;
+  max-width: 1000px;
+  height: 100%;
   padding:15px;
-  background-color:#fff;
+  background-color:#f2f2f2;
   border-right:2px solid #000;
   border-left:2px solid #000;
   border-bottom: 2px solid #000;
-}
-
-header{
-	
 }
 
 #titleContainer{
@@ -39,7 +37,7 @@ header{
 	background-color:#007dc3;
 	border-radius:8px;
 	justify-content: space-between;
-	box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  border-style: solid;
   font-size: 150%;
   align-content: center;
 }
@@ -55,7 +53,8 @@ header{
 }
 
 #inpFile{
-  
+  padding: 40px;
+  align-self: center;
 }
 
 .image-preview{
@@ -63,7 +62,8 @@ header{
   margin-left: auto;
   margin-right: auto;
   width: 80%;
-  height: 150%;
+  height: 100%;
+  max-height: 700px;
   min-height: 100px;
   border: 2px solid #dddddd;
   margin-top: 15px;
@@ -79,16 +79,15 @@ header{
 
 .image-preview__image{
   display:none;
-  
+  width:100%;
+  height:auto;
 }
-#imgPreview {
-    display: block;
-    margin-left: auto;
-    margin-right: auto; 
-    width:80%;
-    height: auto;
+.image-preview__default-text{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
-
 
 #receiptTable{
   margin-left: auto;
@@ -97,23 +96,20 @@ header{
 }
 
 footer{
-	border-top:1px solid #ccc;
+	border:1px solid #007dc3;
 	margin:20px 10px 10px 0;
 	clear:both;	
-	font-size:0.8em;
+	font-size:100%;
 	text-align:center;
 	font-style:italic;
 }
 
-@media only screen and (min-width: 786px){
+@media only screen and (min-width: 768px){
   #titleContainer{
     padding-left: 10px;
     display:flex;
-    background-color:#007dc3;
-    border-radius:8px;
-    justify-content: space-between;
     box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-    align-items: center;
+    border-style: none;
   }
   #logoPreview {
     display:flex;
@@ -123,4 +119,5 @@ footer{
     max-height: 100px;
     padding:10px;
   }
+  
 }
