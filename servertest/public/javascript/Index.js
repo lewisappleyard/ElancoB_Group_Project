@@ -22,3 +22,76 @@ inpFile.addEventListener("change", function(){
     reader.readAsDataURL(file);
   }
 });
+
+
+
+// FOR DRAG AND DROP
+var dropArea = document.getElementById('drop-area');
+
+;['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+    dropArea.addEventListener(eventName, preventDefaults, false);
+})
+
+function preventDefaults(e) {
+    e.preventDefault();
+    e.stopPropagation();
+}
+
+;['dragenter', 'dragover'].forEach(eventName => {
+    dropArea.addEventListener(eventName, highlight, false)
+})
+;['dragleave', 'drop'].forEach(eventName => {
+    dropArea.addEventListener(eventName, unhighlight, false)
+})
+
+function highlight(e) {
+    dropArea.classList.add('highlight')
+}
+function unhighlight(e) {
+    dropArea.classList.remove('highlight')
+}
+
+dropArea.addEventListener('drop', handleDrop, false);
+
+function handleDrop(e) {
+    var dt = e.dataTransfer;
+    var files = dt.files;
+
+    handleFiles(files);
+}
+
+function handleFiles(files) {
+    files = Array.from(files);
+    console.log(files);
+    console.log('LOOK HERE!');
+    
+    files.forEach(uploadFile)
+    files.forEach(previewFile)
+  }
+
+function uploadFile(file) {
+    var url = 'localhost:1234';
+    let formData = new FormData();
+
+    formData.append('file', file)
+
+    fetch(url, {
+        method: 'POST',
+        body: formData
+    })
+    .then(() => {'done, inform the user'})
+    .catch(() => {'error, inform the user'})
+}
+
+function previewFile(file) {
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = function() {
+      previewDefaultText.style.display = "none";
+      previewImage.style.display = "block";
+        //let img = document.createElement('img');
+        //img.src = reader.result;
+        //document.getElementById('gallery').append(img);
+        previewImage.setAttribute("src", reader.result);
+    }
+}
