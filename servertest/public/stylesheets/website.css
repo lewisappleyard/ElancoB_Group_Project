@@ -1,30 +1,30 @@
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
+html, body{
+  width:100%;
+  height:100%;
+  margin: 0;
+  padding: 0;
 }
 
 body{
     font-family: Arial, Helvetica,'Roboto', sans-serif;
     font-size: 16px; 
-    display: flex;
+    display: block;
     text-align: center;
     background-color: gray;
 }
 
-#container{  
+#container{ 
   display: flex;
   flex-direction: column;
   width:100%;
-  height:auto;
   margin-left:auto;
   margin-right:auto;
   margin-top:0px;
-  margin-bottom:0px;
   min-width:400px;
   max-width: 1000px;
-  height: 100%;
-  padding:15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
   background-color:#f2f2f2;
   border-right:2px solid #000;
   border-left:2px solid #000;
@@ -32,13 +32,14 @@ body{
 }
 
 #titleContainer{
+  margin-right: 5px;
   padding: 1px;
   display:block;
 	background-color:#007dc3;
 	border-radius:8px;
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
 	justify-content: space-between;
-  border-style: solid;
-  font-size: 150%;
+  font-size: 20px;
   align-content: center;
 }
 
@@ -49,7 +50,7 @@ body{
 
 #h2Section{
 	padding:0 10px 10px 0;
-  font-size: 25px;
+  font-size: 18px;
 }
 
 #inpFile{
@@ -63,12 +64,9 @@ body{
   margin-right: auto;
   width: 80%;
   height: 100%;
-  max-height: 700px;
-  min-height: 100px;
   border: 2px solid #dddddd;
   margin-top: 15px;
   margin-bottom: 15px;;
-
   /*Default text*/
   display: flex;
   text-align: center;
@@ -77,10 +75,13 @@ body{
   color: #cccccc;
 }
 
+.image-preview img{
+  max-width:100%;
+  max-height:100%;
+}
+
 .image-preview__image{
   display:none;
-  width:100%;
-  height:auto;
 }
 .image-preview__default-text{
   display: flex;
@@ -95,20 +96,51 @@ body{
   border: 2px;
 }
 
+/*table stuff*/
+  .tableElements{
+    margin-left: auto;
+    margin-right: auto;
+    align-content: center;
+    padding: 10px;
+  }
+  .tableElements tbody{
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .tableElements tbody tr{
+    display: flex; 
+    flex-direction: column;
+    padding-bottom: 10px;
+  }
+
+  .tableElements tbody{
+    
+  }
+
+/*end of table stuff*/
+
+
 footer{
-	border:1px solid #007dc3;
+	border:2px solid black;
 	margin:20px 10px 10px 0;
 	clear:both;	
-	font-size:100%;
+	font-size:12px;
 	text-align:center;
 	font-style:italic;
+}
+#signature{
+  padding-top: 10px;
+  margin-top: 5px;
+  color: #444444;
+
 }
 
 @media only screen and (min-width: 768px){
   #titleContainer{
     padding-left: 10px;
     display:flex;
-    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    
     border-style: none;
   }
   #logoPreview {
@@ -119,5 +151,18 @@ footer{
     max-height: 100px;
     padding:10px;
   }
-  
+  #receiptTable{
+    border: 2px;
+    width: 100%; 
+    border-collapse: collapse; 
+  }
+  .tableElements tbody tr{
+    display: flex; 
+    flex-direction:row;
+    padding-bottom: 2px;
+  }
+  .image-preview img{
+    max-width:50%;
+    max-height:50%;
+  }
 }

@@ -136,7 +136,7 @@ function createTable(arrayData) {
         var newButton = document.createElement("input");
         newButton.type = "button";
         newButton.id = "deleteRow".concat(rowCount);
-        newButton.value = "Delete Row";
+        newButton.value = "Delete block";
         newButton.arrayID = rowCount;
         console.log(tRow);
         console.log(tRow[tRow.length-1].id);

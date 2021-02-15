@@ -16,13 +16,13 @@
 
         <header>
             <div id=titleContainer>
-                <h1>Elanco Receipt Recogniser</h1>       
+                <h1 style="font-family: 'Roboto'">Elanco Receipt Recogniser</h1>       
                 <img id="logoPreview" src="/images/elancoLogo.png" alt="Elanco Logo">
             </div>       
         </header>
 
         <section id=h2Section>
-            <h2>Upload image of a receipt that would wish to claim rebate from</h2>
+            <h2>Upload image of a receipt that you wish to claim rebate from:</h2>
         </section>
         
             <input type="file" name="inpFile" id="inpFile">
@@ -37,14 +37,10 @@
             <button type="button" id="table-button">Submit</button>
             <p id="tableBtnText">No table created, yet.</p>
         </section>
-
-        <section id="tableHolder">
-            <table id="receiptTable">
+        <table id="receiptTable" class="tableElements">
                 <!-- This table is used to add and remove values from -->
-            </table>
-        </section>
-
-        <section>
+        </table>
+        <section id="saveSection">
             <button type="button" id="save-button">Save the current table</button>
         </section>
 
@@ -53,6 +49,7 @@
         </footer>
 
     </div>
+    <p id="signature">Group Elanco B 2021</p>
     </body>
     
     <script type="text/javascript" src="/javascript/index.js"></script>
