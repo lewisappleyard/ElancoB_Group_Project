@@ -4,7 +4,10 @@
     <head>
         <meta charset="utf-8">
         <title>Elanco Project: Main Page</title>
+        <meta name="viewport" content="width=device-width, inital-scale=1.0">
         <link href="/stylesheets/website.css" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
 
     </head>
 
@@ -12,15 +15,16 @@
     <div id="container">
 
         <header>
-            <h1>Elanco Receipt Recogniser</h1>
-            <img id="logoPreview" src="/images/elancoLogo.png" alt="Temporary Image">
-            <!-- Use the ../ prefix when accesing files, this goes back a step in the heirarchy so you can access the subfolder and get into the assets folder -->
+            <div id=titleContainer>
+                <h1>Elanco Receipt Recogniser</h1>       
+                <img id="logoPreview" src="/images/elancoLogo.png" alt="Elanco Logo">
+            </div>       
         </header>
 
-        <section>
+        <section id=h2Section>
             <h2>Upload image of a receipt that would wish to claim rebate from</h2>
         </section>
-
+        
         <section>
             <input type="file" name="inpFile" id="inpFile">
             <div class="image-preview" id="imagePreview">
