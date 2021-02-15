@@ -26,12 +26,25 @@
         </section>
         
             <input type="file" name="inpFile" id="inpFile">
+
+
+            <div id="drop-area">
+                <form class="my-form">
+                  <p>Upload multiple files with the file dialog or by dragging and dropping images onto the dashed region</p>
+                  <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
+                  <label class="button" for="fileElem">Select some files</label>
+                </form>
+                <div id="gallery"></div>
+            </div>
+
             <div class="image-preview" id="imagePreview">
                 <img src="" alt="Image Preview" class="image-preview__image">
                 <span class="image-preview__default-text">
                     <p>Image Preview</p> 
                 </span>
             </div>
+
+            
 
         <section>
             <button type="button" id="table-button">Submit</button>

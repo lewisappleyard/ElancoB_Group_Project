@@ -10,6 +10,17 @@
             For the full project, need to connect
 */
 
+
+
+
+
+
+
+
+
+
+
+
 var xhttp = new XMLHttpRequest();
 var response;
 const tableBtnText = document.getElementById("tableBtnText")
