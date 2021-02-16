@@ -17,7 +17,8 @@ const tableBtnText = document.getElementById("tableBtnText")
 var tRow = new Array();
 
 // xhttp.onreadystatechange = function() {
-    // if (this.readyState == 4 && this.status == 200) {
+
+// if (this.readyState == 4 && this.status == 200) {
         // // console.log(xhttp.responseText);
         // tableObject = JSON.parse(xhttp.responseText);
     // }

@@ -5,22 +5,23 @@ const previewImage = previewContainer.querySelector(".image-preview__image")
 const previewDefaultText = previewContainer.querySelector(".image-preview__default-text")
 
 inpFile.addEventListener("change", function(){
-  const file = this.files[0];
+    previewImage.setAttribute("src", "");
+    const file = this.files[0];
 
-  console.log(file);
+    console.log(file);
 
-  if(file){
-    const reader = new FileReader();
+    if(file){
+        const reader = new FileReader();
 
-    previewDefaultText.style.display = "none";
-    previewImage.style.display = "block";
+        previewDefaultText.style.display = "none";
+        previewImage.style.display = "block";
 
-    reader.addEventListener("load", function(){
-        previewImage.setAttribute("src", this.result);
-    });
+        reader.addEventListener("load", function(){
+            previewImage.setAttribute("src", this.result);
+        });
 
-    reader.readAsDataURL(file);
-  }
+        reader.readAsDataURL(file);
+    }
 });
 
 
@@ -67,23 +68,11 @@ function handleFiles(files) {
     
     files.forEach(uploadFile)
     files.forEach(previewFile)
-  }
-
-function uploadFile(file) {
-    var url = 'localhost:1234';
-    let formData = new FormData();
-
-    formData.append('file', file)
-
-    fetch(url, {
-        method: 'POST',
-        body: formData
-    })
-    .then(() => {'done, inform the user'})
-    .catch(() => {'error, inform the user'})
 }
 
 function previewFile(file) {
+    previewImage.setAttribute("src", "");
+    inpFile.files[0] = file;
     let reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = function() {
