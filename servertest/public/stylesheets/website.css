@@ -124,6 +124,12 @@ body{
   padding-bottom: 8px;
 }
 
+#addrow-button{
+  display: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /*table stuff*/
   #receiptTable{
     margin-left: auto;

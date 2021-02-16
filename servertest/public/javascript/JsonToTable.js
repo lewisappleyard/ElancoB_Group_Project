@@ -63,6 +63,7 @@ $("#table-button").on('click',(function(e) {
         success: function(data) {
             loadingSwirl.style.display = "none";
             createTable(data);
+            document.getElementById('addrow-button').style.display = "block";
         },
         error: function(e) {
             loadingSwirl.style.display = "none";
