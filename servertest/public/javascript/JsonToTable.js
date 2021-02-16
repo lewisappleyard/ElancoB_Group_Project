@@ -56,6 +56,7 @@ $("#table-button").on('click',(function(e) {
         type: "POST",
         data: frm,
         contentType: false,
+
         cache: false,
         processData: false,
         beforeSend : function() {
@@ -131,6 +132,7 @@ function createTable(arrayData) {
     console.log("SPLIT HERE");
     console.log(arrayData[0].fields.Items.value); // This is the name of one receipt item so this array needs looping
     */
+    console.log(arrayData);
 
     var itemValues = arrayData["items"]; // use .value.Name.value for product names, use .value.TotalPrice.valueData.text
     var recieptDate = arrayData["date"];
@@ -163,7 +165,7 @@ function createTable(arrayData) {
         var newButton = document.createElement("input");
         newButton.type = "button";
         newButton.id = "deleteRow".concat(rowCount);
-        newButton.value = "Delete block";
+        newButton.value = "Delete";
         newButton.arrayID = rowCount;
         console.log(tRow);
         console.log(tRow[tRow.length-1].id);

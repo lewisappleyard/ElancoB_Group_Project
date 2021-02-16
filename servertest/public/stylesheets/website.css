@@ -98,6 +98,7 @@ body{
   border: 2px solid #dddddd;
   margin-top: 15px;
   margin-bottom: 15px;;
+  
   /*Default text*/
   display: flex;
   text-align: center;
@@ -124,36 +125,36 @@ body{
   padding-bottom: 8px;
 }
 
+/*table stuff*/
+#receiptTable{
+  margin-left: auto;
+  margin-right: auto;
+  border: 2px;
+}
+.tableElements{
+  margin-left: auto;
+  margin-right: auto;
+  align-content: center;
+  padding: 10px;
+}
+.tableElements tbody{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tableElements tbody tr{
+  display: flex; 
+  flex-direction: column;
+  padding-bottom: 10px;
+}
+
+/*end of table stuff*/
+
 #addrow-button{
   display: none;
   margin-left: auto;
   margin-right: auto;
 }
-
-/*table stuff*/
-  #receiptTable{
-    margin-left: auto;
-    margin-right: auto;
-    border: 2px;
-  }
-  .tableElements{
-    margin-left: auto;
-    margin-right: auto;
-    align-content: center;
-    padding: 10px;
-  }
-  .tableElements tbody{
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .tableElements tbody tr{
-    display: flex; 
-    flex-direction: column;
-    padding-bottom: 10px;
-  }
-
-/*end of table stuff*/
 
 #loadingSwirl{
   height: 100px;
@@ -164,10 +165,23 @@ body{
 
 }
 
+
+
 #saveSection{
   padding-top: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+#saveSection div{
+  padding: 10px;
 }
 
+#rebateSubmition{
+  display:"block";
+}
 footer{
 	border:2px solid black;
 	margin:20px 10px 10px 0;
