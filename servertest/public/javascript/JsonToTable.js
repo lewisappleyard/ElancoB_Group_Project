@@ -10,30 +10,23 @@
             For the full project, need to connect
 */
 
-
-
-
-
-
-
-
-
-var tRow = new Array();
+var xhttp = new XMLHttpRequest();
 var response;
 const tableBtnText = document.getElementById("tableBtnText")
 
+var tRow = new Array();
 
-/*var xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        //console.log(xhttp.responseText);
-        tableObject = JSON.parse(xhttp.responseText);
-    }
-}
-xhttp.open("GET", "APIreturn.json", true);
-xhttp.send();*/
+// xhttp.onreadystatechange = function() {
+    // if (this.readyState == 4 && this.status == 200) {
+        // // console.log(xhttp.responseText);
+        // tableObject = JSON.parse(xhttp.responseText);
+    // }
+// }
+// xhttp.open("GET", "APIreturn.json", true);
+// xhttp.send();
 
 const button = document.getElementById("table-button");
+const fileInp = document.getElementById("inpFile");
 const saveBtn = document.getElementById("save-button");
 
 var rowCount = 0;
@@ -47,13 +40,30 @@ var tableObject =   { "product" : [
                     ]};
 
 
-button.addEventListener("click", function()
-{
-    console.log("Submit pressed");
 
-    tableBtnText.style.display = "none";
-    createTable(tableObject);
-});
+$("#table-button").on('click',(function(e) {
+    e.preventDefault();
+	tableBtnText.style.display = "none";
+	frm = new FormData();
+	frm.append('img', fileInp.files[0]);
+    $.ajax({
+        url: "http://20.77.56.87/api/ocr",
+        type: "POST",
+        data: frm,
+        contentType: false,
+        cache: false,
+        processData: false,
+        beforeSend : function() {
+        },
+        success: function(data) {
+            createTable(data);
+        },
+        error: function(e) {
+            alert(e);
+        }                    
+    });
+}));
+
 
 saveBtn.addEventListener("click", function() {
     console.log("Save pressed")
@@ -105,6 +115,8 @@ function promptDownload(saveJSONString) {
     document.body.removeChild(element);
 }
 
+var test = {}
+
 function createTable(arrayData) {
     /* These logs were used for testing, left in case more testing is needed
     console.log(arrayData);
@@ -112,15 +124,14 @@ function createTable(arrayData) {
     console.log(arrayData[0].fields.Items.value); // This is the name of one receipt item so this array needs looping
     */
 
-    var itemValues = arrayData[0].fields.Items.value; // use .value.Name.value for product names, use .value.TotalPrice.valueData.text
-    var recieptDate = arrayData[0].fields.TransactionDate.valueData.text;
-    
+    var itemValues = arrayData["items"]; // use .value.Name.value for product names, use .value.TotalPrice.valueData.text
+    var recieptDate = arrayData["date"];
+    test = itemValues;
     var table = document.getElementById("receiptTable");
 
     var newBody = document.createElement("tbody");
 
-    for (var property in itemValues)
-    {
+    for (var i = 0; i < itemValues.length; i++) {
         // Below creates a new row within the table body, with a cell for each data type, and stores it in the global array of rows as well as give it a unique ID from the global row count
         tRow.push(newBody.insertRow());
         var nameData = tRow[tRow.length-1].insertCell();
@@ -130,10 +141,10 @@ function createTable(arrayData) {
 
         // Below populates the new cells of the row with data returned, currently very restricted and not flexible based on returned JSON format, possible improvement can be made here
         var nameInput = nameData.appendChild(document.createElement("input"));
-        nameInput.value = itemValues[property].value.Name.value;
+        nameInput.value = itemValues[i]["name"];
         nameInput.id = "name".concat(rowCount);
         var priceInput = priceData.appendChild(document.createElement("input"));
-        priceInput.value = itemValues[property].value.TotalPrice.valueData.text;
+        priceInput.value = itemValues[i]["price"];
         priceInput.id = "price".concat(rowCount);
         var dateInput = itemDate.appendChild(document.createElement("input"));
         dateInput.value = recieptDate;
