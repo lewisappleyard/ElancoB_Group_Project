@@ -58,27 +58,25 @@ function handleDrop(e) {
     var dt = e.dataTransfer;
     var files = dt.files;
 	fileInp.files = dt.files;
-    handleFiles(files);
-}
 
-function handleFiles(files) {
     files = Array.from(files);
     console.log(files);
     console.log('LOOK HERE!');
-    files.forEach(previewFile)
-}
+    //files.forEach(previewFile)
 
-function previewFile(file) {
-    previewImage.setAttribute("src", "");
-    inpFile.files[0] = file;
-    let reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = function() {
-      previewDefaultText.style.display = "none";
-      previewImage.style.display = "block";
-        //let img = document.createElement('img');
-        //img.src = reader.result;
-        //document.getElementById('gallery').append(img);
-        previewImage.setAttribute("src", reader.result);
+    for (i = 0; i < files.length; i++) {
+        previewImage.setAttribute("src", "");
+        inpFile.files[0] = file;
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = function() {
+            previewDefaultText.style.display = "none";
+            previewImage.style.display = "block";
+            //let img = document.createElement('img');
+            //img.src = reader.result;
+            //document.getElementById('gallery').append(img);
+            previewImage.setAttribute("src", reader.result);
+        }
     }
 }
+
