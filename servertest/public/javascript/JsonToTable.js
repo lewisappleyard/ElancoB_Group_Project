@@ -45,6 +45,8 @@ var tableObject =   { "product" : [
 
 $("#table-button").on('click',(function(e) {
     e.preventDefault();
+    //delete previous table
+    document.getElementById('receiptTable').innerHTML = "";
 	tableBtnText.style.display = "none";
     loadingSwirl.style.display = "block";
 	frm = new FormData();
