@@ -25,14 +25,12 @@
             <h2>Upload image of a receipt that you wish to claim rebate from:</h2>
         </section>
         
-            <input type="file" name="inpFile" id="inpFile">
-
+            <input type="file" id="inpFile" name="inpFile" multiple accept="image/*" onchange="handleFiles(this.files)">
+	    <label class="button" for="fileElem">Select some files</label>
 
             <div id="drop-area">
                 <form class="my-form">
                   <p>drag images here to upload</p>
-                  <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
-                  <label class="button" for="fileElem">Select some files</label>
                 </form>
                 <div id="gallery"></div>
             </div>
