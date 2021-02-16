@@ -190,3 +190,51 @@ function deleteRow(tableBody, tableRow, rowID) {
     var temp = rowID.replace("deleteRow", "");
     tRow[temp].id = "DELETED";
 }
+
+
+
+
+
+// NEW FOR ADDDING ROWS
+
+const addRowBtn = document.getElementById("addrow-button");
+
+addRowBtn.addEventListener("click", function() {
+    console.log('add row pressed');
+
+    addRow();
+})
+
+function addRow() {
+    var table = document.getElementById("receiptTable");
+    var newBody = document.createElement("tbody");
+
+    tRow.push(newBody.insertRow());
+    
+    var nameData = tRow[tRow.length-1].insertCell();
+    var priceData = tRow[tRow.length-1].insertCell();
+    var itemDate = tRow[tRow.length-1].insertCell();
+    tRow[tRow.length-1].id = "row".concat(rowCount);
+
+    var nameInput = nameData.appendChild(document.createElement("input"));
+    nameInput.id = "name".concat(rowCount);
+    var priceInput = priceData.appendChild(document.createElement("input"));
+    priceInput.id = "price".concat(rowCount);
+    var dateInput = itemDate.appendChild(document.createElement("input"));
+    dateInput.id = "date".concat(rowCount);
+
+    // Create the delete row button
+    var newButton = document.createElement("input");
+    newButton.type = "button";
+    newButton.id = "deleteRow".concat(rowCount);
+    newButton.value = "Delete block";
+    newButton.arrayID = rowCount;
+    console.log(tRow);
+    console.log(tRow[tRow.length-1].id);
+    newButton.onclick = function() { deleteRow(newBody, tRow[this.arrayID].id, this.id) };
+    var buttonSpace = tRow[tRow.length -1].insertCell();
+    buttonSpace.appendChild(newButton);
+
+    rowCount += 1;
+    table.appendChild(newBody);
+}
