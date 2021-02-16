@@ -120,14 +120,17 @@ body{
   align-items: center;
   height: 100%;
 }
-
-#receiptTable{
-  margin-left: auto;
-  margin-right: auto;
-  border: 2px;
+#submitSection{
+  padding-bottom: 8px;
 }
 
+
 /*table stuff*/
+  #receiptTable{
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px;
+  }
   .tableElements{
     margin-left: auto;
     margin-right: auto;
@@ -147,6 +150,9 @@ body{
 
 /*end of table stuff*/
 
+#saveSection{
+  padding-top: 8px;
+}
 
 footer{
 	border:2px solid black;
@@ -184,9 +190,10 @@ footer{
   #receiptTable{
     border: 2px;
     width: 100%; 
-    border-collapse: collapse; 
+    border-collapse: collapse;
   }
   .tableElements tbody tr{
+    justify-content: center;
     display: flex; 
     flex-direction:row;
     padding-bottom: 2px;
