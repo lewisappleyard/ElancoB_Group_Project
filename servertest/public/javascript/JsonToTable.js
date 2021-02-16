@@ -29,6 +29,7 @@ var tRow = new Array();
 const button = document.getElementById("table-button");
 const fileInp = document.getElementById("inpFile");
 const saveBtn = document.getElementById("save-button");
+const loadingSwirl = document.getElementById("loadingSwirl")
 
 var rowCount = 0;
 
@@ -45,6 +46,7 @@ var tableObject =   { "product" : [
 $("#table-button").on('click',(function(e) {
     e.preventDefault();
 	tableBtnText.style.display = "none";
+    loadingSwirl.style.display = "block";
 	frm = new FormData();
 	frm.append('img', fileInp.files[0]);
     $.ajax({
@@ -57,9 +59,11 @@ $("#table-button").on('click',(function(e) {
         beforeSend : function() {
         },
         success: function(data) {
+            loadingSwirl.style.display = "none";
             createTable(data);
         },
         error: function(e) {
+            loadingSwirl.style.display = "none";
             alert(e);
         }                    
     });

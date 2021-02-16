@@ -124,7 +124,6 @@ body{
   padding-bottom: 8px;
 }
 
-
 /*table stuff*/
   #receiptTable{
     margin-left: auto;
@@ -149,6 +148,15 @@ body{
   }
 
 /*end of table stuff*/
+
+#loadingSwirl{
+  height: 100px;
+  width: 100px;
+  display:none;
+  margin-left: auto;
+  margin-right: auto;
+
+}
 
 #saveSection{
   padding-top: 8px;
