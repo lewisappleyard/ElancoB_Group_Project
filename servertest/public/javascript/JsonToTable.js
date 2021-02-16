@@ -66,7 +66,7 @@ $("#table-button").on('click',(function(e) {
         },
         error: function(e) {
             loadingSwirl.style.display = "none";
-            alert(e);
+            alert("upload failed, please try again");
         }                    
     });
 }));
