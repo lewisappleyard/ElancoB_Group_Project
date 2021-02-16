@@ -29,6 +29,11 @@ app.get('/', function(req, res) {
     res.render('index')
 });
 
+app.get('/howto', function(req, res) {
+    res.render('howto')
+});
+
+
 
 app.get('/api/hello', (req, res) => {
     res.send('hiya');
