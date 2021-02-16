@@ -58,6 +58,37 @@ body{
   align-self: center;
 }
 
+/*drag and drop*/
+#drop-area {
+  display: none;
+  border: 2px dashed #ccc;
+  border-radius: 20px;
+  width: 50%;
+  font-family: sans-serif;
+  margin: 10px auto;
+  padding: 20px;
+}
+#drop-area.highlight {
+  border-color: #007dc3;
+}
+.my-form {
+  margin-bottom: 10px;
+}
+/*#gallery {
+  margin-top: 10px;
+}
+#gallery img {
+  width: 150px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  vertical-align: middle;
+}*/
+#fileElem {
+  display: none;
+}
+/*end*/
+
+
 .image-preview{
   display: block;
   margin-left: auto;
@@ -151,6 +182,9 @@ footer{
     max-height: 100px;
     padding:10px;
   }
+  #drop-area{
+    display: block;
+  }
   #receiptTable{
     border: 2px;
     width: 100%; 
@@ -182,31 +216,3 @@ footer{
   border-color:purple;
 }
 */
-
-
-#drop-area {
-  border: 2px dashed #ccc;
-  border-radius: 20px;
-  width: 480px;
-  font-family: sans-serif;
-  margin: 100px auto;
-  padding: 20px;
-}
-#drop-area.highlight {
-  border-color: purple;
-}
-.my-form {
-  margin-bottom: 10px;
-}
-#gallery {
-  margin-top: 10px;
-}
-#gallery img {
-  width: 150px;
-  margin-bottom: 10px;
-  margin-right: 10px;
-  vertical-align: middle;
-}
-#fileElem {
-  display: none;
-}
