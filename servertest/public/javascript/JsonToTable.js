@@ -47,7 +47,7 @@ $("#table-button").on('click',(function(e) {
 	frm = new FormData();
 	frm.append('img', fileInp.files[0]);
     $.ajax({
-        url: "http://20.77.56.87/api/ocr",
+        url: "/api/ocr",
         type: "POST",
         data: frm,
         contentType: false,

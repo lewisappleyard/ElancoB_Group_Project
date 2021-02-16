@@ -6,15 +6,24 @@ const fileUpload = require('express-fileupload');
 const fetch = require('node-fetch');
 const path = require('path');
 
-
 const PORT = process.env.PORT;
 const AZURE_ENDPOINT = process.env.AZURE_ENDPOINT;
 const AZURE_KEY = process.env.AZURE_KEY;
-
+const DEBUG = process.env.DEBUG;
 
 const app = express();
-app.set('view engine', 'ejs');
-app.use(express.static('public'));
+
+if (DEBUG) {
+    app.all('/*', function(req, res, next) {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Headers", "X-Requested-With");
+      next();
+    });
+}
+
+
+
+app.use(express.static('public', {index: 'index.html'}));
 
 app.use(fileUpload());
 
@@ -25,9 +34,9 @@ function sleep(ms) {
     });
 }
 
-app.get('/', function(req, res) {
-    res.render('index')
-});
+// app.get('/', function(req, res) {
+    // res.sendFile(path.join(__dirname + '/public/index.html'));
+// });
 
 
 app.get('/api/hello', (req, res) => {
@@ -74,8 +83,35 @@ app.post('/api/ocr', async (req, res) => {
         respData = await resp.json();
         jobStatus = respData['status'];
     }
+	
+	receipt = respData["analyzeResult"]["documentResults"][0]["fields"]
+	
+	returnData = {
+		"date": receipt["TransactionDate"]["text"],
+		"items": [],
+		"totalPrice": receipt["Total"]["valueNumber"]
+	}
+	
+	
+	
+	
+	itmCount = receipt["Items"]["valueArray"].length
+	
+	for (var i = 0; i < itmCount; i++) {
+		itm = receipt["Items"]["valueArray"][i]["valueObject"]
+		itmName = itm["Name"]["text"]
+		itmPrice = itm["TotalPrice"]["valueNumber"]
+		returnData["items"][i] = {"name": itmName, "price": itmPrice}
+	}
+	
+	
     console.log("Success");
-    res.json(respData);
+    res.json(returnData);
+
+});
+
+app.use((req, res) => {
+    res.status(404).sendFile(path.join(__dirname + '/public/404.html'));
 });
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`))
