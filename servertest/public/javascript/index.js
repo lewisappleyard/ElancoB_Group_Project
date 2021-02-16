@@ -65,8 +65,6 @@ function handleFiles(files) {
     files = Array.from(files);
     console.log(files);
     console.log('LOOK HERE!');
-    
-    files.forEach(uploadFile)
     files.forEach(previewFile)
 }
 
