@@ -57,7 +57,7 @@ dropArea.addEventListener('drop', handleDrop, false);
 function handleDrop(e) {
     var dt = e.dataTransfer;
     var files = dt.files;
-
+	fileInp.files = dt.files;
     handleFiles(files);
 }
 
