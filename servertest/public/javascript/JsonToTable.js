@@ -143,20 +143,18 @@ function createTable(data) {
 
     var newBody = document.createElement("tbody");
 
-	receipt = data["analyzeResult"]["documentResults"][0]["fields"]
-	receiptDate = receipt["TransactionDate"]["text"] || "";
+    receipt = data["analyzeResult"]["documentResults"][0]["fields"]
+    receiptDate = "TransactionDate" in receipt ? receipt["TransactionDate"]["text"] : "";
 	
-	if ("Items" in receipt) {
-		items = receipt["Items"]["valueArray"]
-	} else {
-		items = []
-	}
+    items = "Items" in receipt ? receipt["Items"]["valueArray"] : [];
+	
+
 	
     for (var i = 0; i < items.length; i++) {
-		itm = items[i]["valueObject"]
+	itm = items[i]["valueObject"];
 		
-		itmName = itm["Name"]["text"] || ""
-		itmPrice = itm["TotalPrice"]["valueNumber"] || ""
+	itmName = "Name" in itm ? itm["Name"]["text"] : "";
+	itmPrice = "TotalPrice" in itm ? itm["TotalPrice"]["valueNumber"] : "";
 		
         // Below creates a new row within the table body, with a cell for each data type, and stores it in the global array of rows as well as give it a unique ID from the global row count
         tRow.push(newBody.insertRow());
