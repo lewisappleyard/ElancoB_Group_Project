@@ -230,7 +230,7 @@ function addRow() {
     var newButton = document.createElement("input");
     newButton.type = "button";
     newButton.id = "deleteRow".concat(rowCount);
-    newButton.value = "Delete block";
+    newButton.value = "Delete";
     newButton.arrayID = rowCount;
     console.log(tRow);
     console.log(tRow[tRow.length-1].id);
