@@ -65,16 +65,12 @@ function handleDrop(e) {
     var files = dt.files;
 	fileInp.files = dt.files;
 
-    handleFiles(files);
-}
-
-function handleFiles(files) {
     files = Array.from(files);
-
     files.forEach(previewFile);
 }
 
 function previewFile(files) {
+<<<<<<< HEAD
     previewImage.setAttribute("src", "");
     const file = files[0];
     inpFile.files[0] = file;
@@ -94,5 +90,41 @@ function previewFile(files) {
     });
 
     reader.readAsDataURL(files);
+=======
+    for (i = 0; i < files.length; i++) {
+        previewImage.setAttribute("src", "");
+        inpFile.files[0] = file;
+        let reader = new FileReader();
+        temp = reader.readAsDataURL(file);
+
+        reader.onloadend = function() {
+            previewDefaultText.style.display = "none";
+            previewImage.style.display = "block";
+            //let img = document.createElement('img');
+            //img.src = reader.result;
+            //document.getElementById('gallery').append(img);
+            previewImage.setAttribute("src", temp);
+        }
+    }
+>>>>>>> b173eae801a4a7e725b0c0e416c9dbebb6117784
 }
 
+inpFile.addEventListener("change", function(){//scan image button (inpfile)
+    previewImage.setAttribute("src", "");
+    const file = this.files[0];
+    
+    console.log(file);
+    
+    if(file){
+        const reader = new FileReader();
+        
+        previewDefaultText.style.display = "none";
+        previewImage.style.display = "block";
+        
+        reader.addEventListener("load", function(){
+            previewImage.setAttribute("src", this.result);
+        });
+        
+        reader.readAsDataURL(file);
+    }
+});
