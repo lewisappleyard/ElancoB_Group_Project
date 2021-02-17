@@ -170,7 +170,7 @@ body{
 
 #saveSection{
   padding-top: 8px;
-  display: flex;
+  display:none;
   flex-direction: column;
   justify-content: center;
   margin-left: auto;

@@ -13,6 +13,8 @@
 var xhttp = new XMLHttpRequest();
 var response;
 const tableBtnText = document.getElementById("tableBtnText")
+const saveAndSubmitBtn = document.getElementById('saveSection');
+const manualButton = document.getElementById("manualButton");
 
 var tRow = new Array();
 
@@ -41,18 +43,17 @@ var tableObject =   { "product" : [
                         {"name":"product4","price":"\xA330"},
                     ]};
 
-
-
 $("#table-button").on('click',(function(e) {
     e.preventDefault();
     //delete previous table
     document.getElementById('receiptTable').innerHTML = "";
+
 	tableBtnText.style.display = "none";
     loadingSwirl.style.display = "block";
 	frm = new FormData();
 	frm.append('img', fileInp.files[0]);
     $.ajax({
-        url: "/api/ocr",
+        url: "/api/ocrraw",
         type: "POST",
         data: frm,
         contentType: false,
@@ -63,8 +64,8 @@ $("#table-button").on('click',(function(e) {
         },
         success: function(data) {
             loadingSwirl.style.display = "none";
+            saveAndSubmitBtn.style.display = "flex";
             createTable(data);
-            document.getElementById('addrow-button').style.display = "block";
         },
         error: function(e) {
             loadingSwirl.style.display = "none";
@@ -72,7 +73,6 @@ $("#table-button").on('click',(function(e) {
         }                    
     });
 }));
-
 
 saveBtn.addEventListener("click", function() {
     console.log("Save pressed")
@@ -132,6 +132,7 @@ function createTable(arrayData) {
     console.log("SPLIT HERE");
     console.log(arrayData[0].fields.Items.value); // This is the name of one receipt item so this array needs looping
     */
+
     console.log(arrayData);
 
     var itemValues = arrayData["items"]; // use .value.Name.value for product names, use .value.TotalPrice.valueData.text
@@ -181,7 +182,15 @@ function createTable(arrayData) {
 
     console.log("row and button made!");
     console.log(rowCount);
+    document.getElementById('addrow-button').style.display = "block";
 }
+
+manualButton.addEventListener("click", function(){
+    //create table
+    saveAndSubmitBtn.style.display = "flex";
+    addRowBtn.style.display="block";
+    addRow();
+});
 
 function deleteRow(tableBody, tableRow, rowID) {
     console.log(tableRow, rowID);
