@@ -30,6 +30,8 @@ inpFile.addEventListener("change", function(){//scan image button (inpfile)
 });
 
 
+
+
 // FOR DRAG AND DROP
 var dropArea = document.getElementById('drop-area');
 
