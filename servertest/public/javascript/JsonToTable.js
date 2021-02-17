@@ -65,6 +65,7 @@ $("#table-button").on('click',(function(e) {
         success: function(data) {
             loadingSwirl.style.display = "none";
             saveAndSubmitBtn.style.display = "flex";
+            manualButton.style.display = "none";
             createTable(data);
         },
         error: function(e) {
