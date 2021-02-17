@@ -74,21 +74,25 @@ function handleFiles(files) {
     files.forEach(previewFile);
 }
 
-function previewFile(file) {
-    for (i = 0; i < files.length; i++) {
-        previewImage.setAttribute("src", "");
-        inpFile.files[0] = file;
-        let reader = new FileReader();
-        reader.readAsDataURL(file);
+function previewFile(files) {
+    previewImage.setAttribute("src", "");
+    const file = files[0];
+    inpFile.files[0] = file;
 
-        reader.onloadend = function() {
-            previewDefaultText.style.display = "none";
-            previewImage.style.display = "block";
-            //let img = document.createElement('img');
-            //img.src = reader.result;
-            //document.getElementById('gallery').append(img);
-            previewImage.setAttribute("src", reader.result);
-        }
-    }
+    console.log("this is files");
+    console.log(files);
+    console.log("this is the file");
+    console.log(file);
+
+    let reader = new FileReader();
+
+    previewDefaultText.style.display = "none";
+    previewImage.style.display = "block";
+
+    reader.addEventListener("load", function(){
+        previewImage.setAttribute("src", this.result);
+    });
+
+    reader.readAsDataURL(files);
 }
 
