@@ -79,30 +79,7 @@ function previewFile(files) {
         reader.onloadend = function() {
             previewDefaultText.style.display = "none";
             previewImage.style.display = "block";
-            //let img = document.createElement('img');
-            //img.src = reader.result;
-            //document.getElementById('gallery').append(img);
             previewImage.setAttribute("src", temp);
         }
     }
 }
-
-inpFile.addEventListener("change", function(){//scan image button (inpfile)
-    previewImage.setAttribute("src", "");
-    const file = this.files[0];
-    
-    console.log(file);
-    
-    if(file){
-        const reader = new FileReader();
-        
-        previewDefaultText.style.display = "none";
-        previewImage.style.display = "block";
-        
-        reader.addEventListener("load", function(){
-            previewImage.setAttribute("src", this.result);
-        });
-        
-        reader.readAsDataURL(file);
-    }
-});

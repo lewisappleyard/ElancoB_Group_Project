@@ -12,9 +12,6 @@
 
 var xhttp = new XMLHttpRequest();
 var response;
-const tableBtnText = document.getElementById("tableBtnText")
-const saveAndSubmitBtn = document.getElementById('saveSection');
-const manualButton = document.getElementById("manualButton");
 
 var tRow = new Array();
 
@@ -32,6 +29,10 @@ const button = document.getElementById("table-button");
 const fileInp = document.getElementById("inpFile");
 const saveBtn = document.getElementById("save-button");
 const loadingSwirl = document.getElementById("loadingSwirl")
+const addRowBtn = document.getElementById("addrow-button");
+const manualButton = document.getElementById("manualButton");
+const tableBtnText = document.getElementById("tableBtnText")
+const saveAndSubmitBtn = document.getElementById('saveSection');
 
 var rowCount = 0;
 
@@ -48,8 +49,9 @@ $("#table-button").on('click',(function(e) {
     //delete previous table
     document.getElementById('receiptTable').innerHTML = "";
 
-	tableBtnText.style.display = "none";
+    saveAndSubmitBtn.style.display = "none";
     loadingSwirl.style.display = "block";
+    addRowBtn.style.display = "none"
 	frm = new FormData();
 	frm.append('img', fileInp.files[0]);
     $.ajax({
@@ -63,6 +65,7 @@ $("#table-button").on('click',(function(e) {
         beforeSend : function() {
         },
         success: function(data) {
+            tableBtnText.style.display = "none";
             loadingSwirl.style.display = "none";
             saveAndSubmitBtn.style.display = "flex";
             manualButton.style.display = "none";
@@ -195,7 +198,7 @@ function createTable(data) {
 
     console.log("row and button made!");
     console.log(rowCount);
-    document.getElementById('addrow-button').style.display = "block";
+    addRowBtn.style.display = "block";
 }
 
 manualButton.addEventListener("click", function(){
@@ -222,7 +225,7 @@ function deleteRow(tableBody, tableRow, rowID) {
 
 // NEW FOR ADDDING ROWS
 
-const addRowBtn = document.getElementById("addrow-button");
+
 
 addRowBtn.addEventListener("click", function() {
     console.log('add row pressed');
