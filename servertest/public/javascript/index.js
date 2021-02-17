@@ -63,16 +63,22 @@ function handleDrop(e) {
     var files = dt.files;
 	fileInp.files = dt.files;
 
-    files = Array.from(files);
-    console.log(files);
-    console.log('LOOK HERE!');
-    //files.forEach(previewFile)
+    handleFiles(files);
+}
 
+function handleFiles(files) {
+    files = Array.from(files);
+
+    files.forEach(previewFile);
+}
+
+function previewFile(file) {
     for (i = 0; i < files.length; i++) {
         previewImage.setAttribute("src", "");
         inpFile.files[0] = file;
         let reader = new FileReader();
         reader.readAsDataURL(file);
+
         reader.onloadend = function() {
             previewDefaultText.style.display = "none";
             previewImage.style.display = "block";
