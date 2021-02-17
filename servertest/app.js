@@ -110,6 +110,40 @@ app.post('/api/ocr', async (req, res) => {
 
 });
 
+
+app.post('/api/ocrraw', async (req, res) => {
+    if (!req.files || !req.files.img) {
+        return res.status(400).json({'status': 'error', 'message': 'No image uploaded'});
+    }
+    upload = req.files.img;
+    console.log("Submitting image...");
+    var resp = await fetch(AZURE_ENDPOINT + '/formrecognizer/v2.0/prebuilt/receipt/analyze', {
+        method: 'POST',
+        body: upload.data,
+        headers: {
+            'Ocp-Apim-Subscription-Key': AZURE_KEY,
+            'Content-Type': 'application/octet-stream'
+        }
+    });
+    console.log("Success");
+    resultLocation = await resp.headers.get('Operation-Location');
+    var jobStatus = 'running';
+    
+    while(jobStatus == 'running') {
+        await sleep(1000);
+        console.log("Polling status...");
+        var resp = await fetch(resultLocation, {
+            headers: {
+                'Ocp-Apim-Subscription-Key': AZURE_KEY
+            }
+        });
+        respData = await resp.json();
+        jobStatus = respData['status'];
+    }
+    res.json(respData);
+
+});
+
 app.use((req, res) => {
     res.status(404).sendFile(path.join(__dirname + '/public/404.html'));
 });
