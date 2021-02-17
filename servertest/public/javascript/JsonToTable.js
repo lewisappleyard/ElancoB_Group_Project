@@ -49,8 +49,9 @@ $("#table-button").on('click',(function(e) {
     //delete previous table
     document.getElementById('receiptTable').innerHTML = "";
 
-    saveAndSubmitBtn.style.display = "none";
     loadingSwirl.style.display = "block";
+    saveAndSubmitBtn.style.display = "none";
+    tableBtnText.style.display = "none";
     addRowBtn.style.display = "none"
 	frm = new FormData();
 	frm.append('img', fileInp.files[0]);
@@ -161,10 +162,14 @@ function createTable(data) {
     headerRow.appendChild(dateHeader);
     headerRow.appendChild(deleteHeader);
 	
+    tableBtnText.style.display = "block";
 	if (items.length == 0) {
-        alert("couldn't find any products, please enter manually");
+        tableBtnText.innerHTML = "couldn't find any products, please enter manually";
         addRow(); 
         }
+    else{
+        tableBtnText.innerHTML = "please enter any missing items/fields";
+    }
     for (var i = 0; i < items.length; i++) {
 	    itm = items[i]["valueObject"];
 		
