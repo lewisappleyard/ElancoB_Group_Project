@@ -25,33 +25,31 @@
         <section id=h2Section>
             <h2>Upload image of a receipt that you wish to claim rebate from:</h2>
         </section>
-        
+
+        <div id=imageSection>
             <input type="file" id="inpFile" name="inpFile" multiple accept="image/*">
-	    <!--<label class="button" for="fileElem">Select some files</label>-->
+                <div id="drop-area">
+                    <form class="my-form">
+                      <p>drag images here to upload</p>
+                    </form>
+                    <div id="gallery"></div>
+                </div>
+    
+                <div class="image-preview" id="imagePreview">
+                    <img src="" alt="Image Preview" class="image-preview__image">
+                    <span class="image-preview__default-text">
+                        <p>Image Preview</p> 
+                    </span>
+                </div>
 
-            <div id="drop-area">
-                <form class="my-form">
-                  <p>drag images here to upload</p>
-                </form>
-                <div id="gallery"></div>
-            </div>
-
-            <div class="image-preview" id="imagePreview">
-                <img src="" alt="Image Preview" class="image-preview__image">
-                <span class="image-preview__default-text">
-                    <p>Image Preview</p> 
-                </span>
-            </div>
-
-            
+                <div id="scanImageDiv"><button type="button" id="table-button">Scan Image</button></div>
+        </div>
 
         <section id="submitSection">
-            <button type="button" id="table-button">Scan Image</button>
             <p id="tableBtnText">No table created, yet.</p>
             <img src="/images/loadSwirl.gif" alt="loading please wait" id="loadingSwirl">
             <button type="button" id="manualButton">Manual Rebate entry:</button>
-        </section>
-        
+        </section>    
 
         <table id="receiptTable" class="tableElements">
             <!-- This table is used to add and remove values from -->

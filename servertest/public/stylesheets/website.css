@@ -84,11 +84,16 @@ body{
   margin-right: 10px;
   vertical-align: middle;
 }*/
-#fileElem {
-  display: none;
-}
 /*end*/
 
+#imageSection{
+  border: 2px solid lightgray;
+  border-radius: 20px;
+}
+
+#scanImageDiv{
+  padding-bottom: 7px;
+}
 
 .image-preview{
   display: block;
@@ -149,6 +154,9 @@ body{
   padding-bottom: 10px;
 }
 
+.tableElements tbody tr td{
+  padding: 2px;
+}
 /*end of table stuff*/
 
 #addrow-button{
@@ -156,6 +164,7 @@ body{
   margin-left: auto;
   margin-right: auto;
 }
+
 
 #loadingSwirl{
   height: 100px;
@@ -236,9 +245,6 @@ footer{
     flex-direction:row;
     padding-bottom: 2px;
     padding-top: 6px;
-  }
-  .tableElements tbody tr td{
-    padding: 5px;
   }
   .image-preview img{
     max-width:50%;

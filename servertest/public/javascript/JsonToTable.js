@@ -131,17 +131,7 @@ function promptDownload(saveJSONString) {
 var test = {}
 
 function createTable(data) {
-    /* These logs were used for testing, left in case more testing is needed
-    console.log(arrayData);
-    console.log("SPLIT HERE");
-    console.log(arrayData[0].fields.Items.value); // This is the name of one receipt item so this array needs looping
-    */
     console.log(data);
-
-    //var itemValues = arrayData["items"]; // use .value.Name.value for product names, use .value.TotalPrice.valueData.text
-    //var recieptDate = arrayData["date"];
-    //test = itemValues;
-	
     var table = document.getElementById("receiptTable");
 
     var newBody = document.createElement("tbody");
@@ -150,9 +140,10 @@ function createTable(data) {
     receiptDate = "TransactionDate" in receipt ? receipt["TransactionDate"]["text"] : "";
 	
     items = "Items" in receipt ? receipt["Items"]["valueArray"] : [];
-	
-
-	
+	if (items.length == 0) {
+        alert("couldn't find any products, please enter manually");
+        addRow(); 
+        }
     for (var i = 0; i < items.length; i++) {
 	itm = items[i]["valueObject"];
 		
