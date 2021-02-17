@@ -161,6 +161,10 @@ function createTable(data) {
         var nameData = tRow[tRow.length-1].insertCell();
         var priceData = tRow[tRow.length-1].insertCell();
         var itemDate = tRow[tRow.length-1].insertCell();
+        nameData.class = "tdItemsClass";
+        priceData.class = "tdItemsClass";
+        itemDate.class = "tdItemsClass";
+
         tRow[tRow.length-1].id = "row".concat(rowCount);
 
         // Below populates the new cells of the row with data returned, currently very restricted and not flexible based on returned JSON format, possible improvement can be made here
@@ -239,6 +243,10 @@ function addRow() {
     var nameData = tRow[tRow.length-1].insertCell();
     var priceData = tRow[tRow.length-1].insertCell();
     var itemDate = tRow[tRow.length-1].insertCell();
+    nameData.class = "tdItemsClass";
+    priceData.class = "tdItemsClass";
+    itemDate.class = "tdItemsClass";
+
     tRow[tRow.length-1].id = "row".concat(rowCount);
 
     var nameInput = nameData.appendChild(document.createElement("input"));
