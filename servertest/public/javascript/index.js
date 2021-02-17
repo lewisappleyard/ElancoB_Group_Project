@@ -70,16 +70,23 @@ function handleDrop(e) {
 }
 
 function previewFile(files) {
-    for (i = 0; i < files.length; i++) {
-        previewImage.setAttribute("src", "");
-        inpFile.files[0] = file;
-        let reader = new FileReader();
-        temp = reader.readAsDataURL(file);
+    previewImage.setAttribute("src", "");
+    const file = files[0];
+    inpFile.files[0] = file;
 
-        reader.onloadend = function() {
-            previewDefaultText.style.display = "none";
-            previewImage.style.display = "block";
-            previewImage.setAttribute("src", temp);
-        }
-    }
+    console.log("this is files");
+    console.log(files);
+    console.log("this is the file");
+    console.log(file);
+
+    let reader = new FileReader();
+
+    previewDefaultText.style.display = "none";
+    previewImage.style.display = "block";
+
+    reader.addEventListener("load", function(){
+        previewImage.setAttribute("src", this.result);
+    });
+
+    reader.readAsDataURL(files);
 }
