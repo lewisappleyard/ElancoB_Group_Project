@@ -6,7 +6,7 @@ html, body{
 }
 
 body{
-    font-family: Arial, Helvetica,'Roboto', sans-serif;
+    font-family: Arial, Helvetica,'Roboto','Montserrat', sans-serif;
     font-size: 16px; 
     display: block;
     text-align: center;
@@ -49,12 +49,13 @@ body{
 }
 
 #h2Section{
-	padding:0 10px 10px 0;
+  padding-top: 10px;
   font-size: 18px;
 }
 
 #inpFile{
-  padding: 40px;
+  padding-top: 40px;
+  padding-bottom: 10px;
   align-self: center;
 }
 
@@ -199,10 +200,13 @@ footer{
 
 @media only screen and (min-width: 768px){
   #titleContainer{
-    padding-left: 10px;
     display:flex;
     
     border-style: none;
+  }
+  #titleContainer h1{
+    padding-left: 40px;
+    align-self: center;
   }
   #logoPreview {
     display:flex;
