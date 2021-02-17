@@ -100,7 +100,7 @@ function saveTable() {
             var prodPrice = document.getElementById("price".concat(row)).value;
             var prodDate = document.getElementById("date".concat(row)).value;
             //newSave.Customer.push({ "name" : prodName, "price" : prodPrice, "date" : prodDate }); // OLD JSON FILE FORMATTING, IGNORE/REMOVE
-            newSave = newSave.concat(q,prodName,q,",",q,prodPrice,q,",",q,prodDate,q,",\n");
+            newSave = newSave.concat(q,prodName,q,",",q,prodPrice,q,",",q,prodDate,q,"\n");
         }
     }
     //var stringSave = JSON.stringify(newSave); // OLD JSON FORMATTING, IGNORE/REMOVE
@@ -126,23 +126,37 @@ function promptDownload(saveJSONString) {
 
 var test = {}
 
-function createTable(arrayData) {
+function createTable(data) {
     /* These logs were used for testing, left in case more testing is needed
     console.log(arrayData);
     console.log("SPLIT HERE");
     console.log(arrayData[0].fields.Items.value); // This is the name of one receipt item so this array needs looping
     */
+    console.log(data);
 
-    console.log(arrayData);
-
-    var itemValues = arrayData["items"]; // use .value.Name.value for product names, use .value.TotalPrice.valueData.text
-    var recieptDate = arrayData["date"];
-    test = itemValues;
+    //var itemValues = arrayData["items"]; // use .value.Name.value for product names, use .value.TotalPrice.valueData.text
+    //var recieptDate = arrayData["date"];
+    //test = itemValues;
+	
     var table = document.getElementById("receiptTable");
 
     var newBody = document.createElement("tbody");
 
-    for (var i = 0; i < itemValues.length; i++) {
+	receipt = data["analyzeResult"]["documentResults"][0]["fields"]
+	receiptDate = receipt["TransactionDate"]["text"] || "";
+	
+	if ("Items" in receipt) {
+		items = receipt["Items"]["valueArray"]
+	} else {
+		items = []
+	}
+	
+    for (var i = 0; i < items.length; i++) {
+		itm = items[i]["valueObject"]
+		
+		itmName = itm["Name"]["text"] || ""
+		itmPrice = itm["TotalPrice"]["valueNumber"] || ""
+		
         // Below creates a new row within the table body, with a cell for each data type, and stores it in the global array of rows as well as give it a unique ID from the global row count
         tRow.push(newBody.insertRow());
         var nameData = tRow[tRow.length-1].insertCell();
@@ -152,13 +166,13 @@ function createTable(arrayData) {
 
         // Below populates the new cells of the row with data returned, currently very restricted and not flexible based on returned JSON format, possible improvement can be made here
         var nameInput = nameData.appendChild(document.createElement("input"));
-        nameInput.value = itemValues[i]["name"];
+        nameInput.value = itmName;
         nameInput.id = "name".concat(rowCount);
         var priceInput = priceData.appendChild(document.createElement("input"));
-        priceInput.value = itemValues[i]["price"];
+        priceInput.value = itmPrice;
         priceInput.id = "price".concat(rowCount);
         var dateInput = itemDate.appendChild(document.createElement("input"));
-        dateInput.value = recieptDate;
+        dateInput.value = receiptDate;
         dateInput.id = "date".concat(rowCount);
 
         // Below creates a new button for the row, that will delete the row when pressed,
