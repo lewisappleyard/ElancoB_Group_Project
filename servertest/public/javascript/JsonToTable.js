@@ -140,15 +140,36 @@ function createTable(data) {
     receiptDate = "TransactionDate" in receipt ? receipt["TransactionDate"]["text"] : "";
 	
     items = "Items" in receipt ? receipt["Items"]["valueArray"] : [];
+	
+    // Before adding the items, add a header to the table to name the columns
+    var headerRow = newBody.insertRow();
+
+    var itemHeader = document.createElement("th");
+    itemHeader.appendChild(document.createTextNode("Product"));
+
+    var priceHeader = document.createElement("th");
+    priceHeader.appendChild(document.createTextNode("Price"));
+
+    var dateHeader = document.createElement("th");
+    dateHeader.appendChild(document.createTextNode("Date"));
+
+    var deleteHeader = document.createElement("th");
+    deleteHeader.appendChild(document.createTextNode("Delete"));
+
+    headerRow.appendChild(itemHeader);
+    headerRow.appendChild(priceHeader);
+    headerRow.appendChild(dateHeader);
+    headerRow.appendChild(deleteHeader);
+	
 	if (items.length == 0) {
         alert("couldn't find any products, please enter manually");
         addRow(); 
         }
     for (var i = 0; i < items.length; i++) {
-	itm = items[i]["valueObject"];
+	    itm = items[i]["valueObject"];
 		
-	itmName = "Name" in itm ? itm["Name"]["text"] : "";
-	itmPrice = "TotalPrice" in itm ? itm["TotalPrice"]["valueNumber"] : "";
+	    itmName = "Name" in itm ? itm["Name"]["text"] : "";
+	    itmPrice = "TotalPrice" in itm ? itm["TotalPrice"]["valueNumber"] : "";
 		
         // Below creates a new row within the table body, with a cell for each data type, and stores it in the global array of rows as well as give it a unique ID from the global row count
         tRow.push(newBody.insertRow());
