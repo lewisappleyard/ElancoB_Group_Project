@@ -1,24 +1,13 @@
 //import ApiCall from './main.js';
 const inpFile = document.getElementById("inpFile");
-const submitRebate = document.getElementById("rebateSubmition");
+
 const previewContainer = document.getElementById("imagePreview");
 const previewImage = previewContainer.querySelector(".image-preview__image");
 const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
 
 var userSelection = document.getElementById("userOptionSelect");
 
-submitRebate.addEventListener("click", function(){//submit rebate button
-    //alert("rebate submitted, thank you");
 
-    if (userSelection.value == "")
-    {
-        alert("No user profile selected to save to.\nPlease select a user profile.")
-    }
-    else
-    {
-        //This is where the current table can be saved to the selected user profile.
-    }
-});
 
 inpFile.addEventListener("change", function(){//scan image button (inpfile)
     previewImage.setAttribute("src", "");

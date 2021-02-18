@@ -19,6 +19,7 @@ const manualButton = document.getElementById("manualButton");
 const tableBtnText = document.getElementById("tableBtnText")
 const saveAndSubmitBtn = document.getElementById('saveSection');
 const userOptionDiv = document.getElementById("userOptionDiv");
+const submitRebate = document.getElementById("rebateSubmition");
 var tRow = new Array();
 
 var rowCount = 0;
@@ -74,7 +75,18 @@ saveBtn.addEventListener("click", function() {
     promptDownload(temp);
 });
 
+submitRebate.addEventListener("click", function(){//submit rebate button
+    //alert("rebate submitted, thank you");
 
+    if (userSelection.value == "")
+    {
+        alert("No user profile selected to save to.\nPlease select a user profile.")
+    }
+    else
+    {
+        //This is where the current table can be saved to the selected user profile.
+    }
+});
 
 // This function will eventually do some checks on the returned JSON file so that it is in the correct formatting
 function checkReturned(arrayData) {
