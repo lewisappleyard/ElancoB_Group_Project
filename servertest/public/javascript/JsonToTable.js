@@ -121,38 +121,19 @@ function createTable(data) {
 
     var newBody = document.createElement("tbody");
 
-    receipt = data["analyzeResult"]["documentResults"][0]["fields"]
+    receipt = data["analyzeResult"]["documentResults"][0]["fields"];
     receiptDate = "TransactionDate" in receipt ? receipt["TransactionDate"]["text"] : "";
 	
     items = "Items" in receipt ? receipt["Items"]["valueArray"] : [];
 	
     // Before adding the items, add a header to the table to name the columns
-    var headerRow = newBody.insertRow()
-    headerRow.id = "headerId";
-    //console.log(headerRow.id);
-
-    var itemHeader = document.createElement("th");
-    itemHeader.appendChild(document.createTextNode("Product"));
-
-    var priceHeader = document.createElement("th");
-    priceHeader.appendChild(document.createTextNode("Price"));
-
-    var dateHeader = document.createElement("th");
-    dateHeader.appendChild(document.createTextNode("Date"));
-
-    var deleteHeader = document.createElement("th");
-    deleteHeader.appendChild(document.createTextNode(" "));
-
-    headerRow.appendChild(itemHeader);
-    headerRow.appendChild(priceHeader);
-    headerRow.appendChild(dateHeader);
-    headerRow.appendChild(deleteHeader);
+    addTableHeader(newBody);
 	
     tableBtnText.style.display = "block";
 
 	if (items.length == 0) {
         tableBtnText.innerHTML = "couldn't find any products, please enter manually";
-        addRow();
+        //addRow(); This has been moved further down into the same if statement, it needs to be this way for the table ordering to be correct
     }
     else{
         tableBtnText.innerHTML = "please enter any missing items/fields";
@@ -204,6 +185,10 @@ function createTable(data) {
     }
     
     table.appendChild(newBody);
+
+    if (items.length == 0) {
+        addRow();
+    }
 
     console.log("row and button made!");
     console.log(rowCount);
@@ -279,4 +264,28 @@ function addRow() {
 
     rowCount += 1;
     table.appendChild(newBody);
+}
+
+
+function addTableHeader(newBody) {
+    var headerRow = newBody.insertRow()
+    headerRow.id = "headerId";
+    //console.log(headerRow.id);
+
+    var itemHeader = document.createElement("th");
+    itemHeader.appendChild(document.createTextNode("Product"));
+
+    var priceHeader = document.createElement("th");
+    priceHeader.appendChild(document.createTextNode("Price"));
+
+    var dateHeader = document.createElement("th");
+    dateHeader.appendChild(document.createTextNode("Date"));
+
+    var deleteHeader = document.createElement("th");
+    deleteHeader.appendChild(document.createTextNode(" "));
+
+    headerRow.appendChild(itemHeader);
+    headerRow.appendChild(priceHeader);
+    headerRow.appendChild(dateHeader);
+    headerRow.appendChild(deleteHeader);
 }
