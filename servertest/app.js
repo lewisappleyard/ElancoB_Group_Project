@@ -62,6 +62,10 @@ app.post('/savelist', async (req, res) => {
             prodPrice = tableVariables.items[item].price;
             prodDate = tableVariables.items[item].date;
 
+            if (prodName == "") {prodName = "!!!!ERROR!!!!";}
+            if (prodPrice == "") {prodName = "!!!!ERROR!!!!";}
+            if (prodDate == "") {prodName = "!!!!ERROR!!!!";}
+
             //console.log(prodDate);
             
             var query = "INSERT INTO savelist (user, value1, value2, value3) VALUES " + username + "," + prodName + "," + prodPrice + "," + prodDate + ";";
