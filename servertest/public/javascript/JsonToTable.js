@@ -18,6 +18,7 @@ const addRowBtn = document.getElementById("addrow-button");
 const manualButton = document.getElementById("manualButton");
 const tableBtnText = document.getElementById("tableBtnText")
 const saveAndSubmitBtn = document.getElementById('saveSection');
+var tRow = new Array();
 
 var rowCount = 0;
 
@@ -150,16 +151,11 @@ function createTable(data) {
     tableBtnText.style.display = "block";
 	if (items.length == 0) {
         tableBtnText.innerHTML = "couldn't find any products, please enter manually";
-        addRow(); 
-<<<<<<< HEAD
+        addRow();
     }
-    
-=======
-        }
     else{
         tableBtnText.innerHTML = "please enter any missing items/fields";
     }
->>>>>>> c42c4cbe44d8863fa043693a8616d56b2461f85b
     for (var i = 0; i < items.length; i++) {
 	    itm = items[i]["valueObject"];
 		
