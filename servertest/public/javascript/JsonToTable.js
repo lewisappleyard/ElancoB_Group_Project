@@ -99,7 +99,7 @@ submitRebate.addEventListener("click", function(){//submit rebate button
         }
         //save table as a whole pass into node function
         frm = new FormData();
-
+        
         frm.append('table', JSON.stringify(tableVariables));
 
         $.ajax({
@@ -249,6 +249,7 @@ function createTable(data) {
 
 manualButton.addEventListener("click", function(){
     //create table
+    userOptionDiv.style.display = "flex";
     saveAndSubmitBtn.style.display = "flex";
     addRowBtn.style.display="block";
     manualButton.style.display="none";
