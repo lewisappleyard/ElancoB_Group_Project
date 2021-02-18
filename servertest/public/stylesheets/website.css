@@ -206,6 +206,19 @@ th{
   padding: 10px;
 }
 
+#userOptionDiv{
+  display: none;
+  flex-direction: row;
+  justify-content: center;
+  padding: 10px;
+}
+#userOptionDiv p{
+  padding-right: 5px;
+}
+
+#userOptionSelect{
+  align-self: center;
+}
 
 #rebateSubmition{
   background-color: #00639c;
@@ -232,9 +245,6 @@ footer{
   color: #444444;
 
 }
-
-
-
 
 @media only screen and (min-width: 768px){
   #titleContainer{

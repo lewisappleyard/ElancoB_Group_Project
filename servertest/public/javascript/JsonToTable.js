@@ -18,6 +18,7 @@ const addRowBtn = document.getElementById("addrow-button");
 const manualButton = document.getElementById("manualButton");
 const tableBtnText = document.getElementById("tableBtnText")
 const saveAndSubmitBtn = document.getElementById('saveSection');
+const userOptionDiv = document.getElementById("userOptionDiv");
 var tRow = new Array();
 
 var rowCount = 0;
@@ -56,6 +57,7 @@ $("#table-button").on('click',(function(e) {
             loadingSwirl.style.display = "none";
             saveAndSubmitBtn.style.display = "flex";
             manualButton.style.display = "none";
+            userOptionDiv.style.display = "flex";
             createTable(data);
         },
         error: function(e) {
