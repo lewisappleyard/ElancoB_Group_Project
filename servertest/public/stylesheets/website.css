@@ -157,6 +157,10 @@ body{
 .tableElements tbody tr td{
   padding: 2px;
 }
+
+th{
+  display:none;
+}
 /*end of table stuff*/
 
 #addrow-button{
@@ -213,6 +217,8 @@ footer{
 
 }
 
+
+
 @media only screen and (min-width: 768px){
   #titleContainer{
     display:flex;
@@ -250,20 +256,12 @@ footer{
     max-width:50%;
     max-height:50%;
   }
-}
 
-
-/*
-#imagePreview {
-  border: 2px dashed #ccc;
-  border-radius: 20px;
-  width: 480px;
-  font-family: sans-serif;
-  margin: 100px auto;
-  padding: 20px;
+  th{
+    display:flex;
+    border:1px;
+    justify-content:center;
+    padding-top:6px;
+    padding-bottom:2px;
+  }
 }
-
-#imagePreview.highlight {
-  border-color:purple;
-}
-*/

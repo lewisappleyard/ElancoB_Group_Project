@@ -164,7 +164,8 @@ function createTable(data) {
 	if (items.length == 0) {
         alert("couldn't find any products, please enter manually");
         addRow(); 
-        }
+    }
+    
     for (var i = 0; i < items.length; i++) {
 	    itm = items[i]["valueObject"];
 		
