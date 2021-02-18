@@ -10,21 +10,6 @@
             For the full project, need to connect
 */
 
-var xhttp = new XMLHttpRequest();
-var response;
-
-var tRow = new Array();
-
-// xhttp.onreadystatechange = function() {
-
-// if (this.readyState == 4 && this.status == 200) {
-        // // console.log(xhttp.responseText);
-        // tableObject = JSON.parse(xhttp.responseText);
-    // }
-// }
-// xhttp.open("GET", "APIreturn.json", true);
-// xhttp.send();
-
 const button = document.getElementById("table-button");
 const fileInp = document.getElementById("inpFile");
 const saveBtn = document.getElementById("save-button");
@@ -231,6 +216,7 @@ manualButton.addEventListener("click", function(){
     //create table
     saveAndSubmitBtn.style.display = "flex";
     addRowBtn.style.display="block";
+    manualButton.style.display="none";
     addRow();
 });
 
