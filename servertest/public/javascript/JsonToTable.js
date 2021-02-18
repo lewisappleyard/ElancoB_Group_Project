@@ -10,21 +10,6 @@
             For the full project, need to connect
 */
 
-var xhttp = new XMLHttpRequest();
-var response;
-
-var tRow = new Array();
-
-// xhttp.onreadystatechange = function() {
-
-// if (this.readyState == 4 && this.status == 200) {
-        // // console.log(xhttp.responseText);
-        // tableObject = JSON.parse(xhttp.responseText);
-    // }
-// }
-// xhttp.open("GET", "APIreturn.json", true);
-// xhttp.send();
-
 const button = document.getElementById("table-button");
 const fileInp = document.getElementById("inpFile");
 const saveBtn = document.getElementById("save-button");
@@ -33,6 +18,7 @@ const addRowBtn = document.getElementById("addrow-button");
 const manualButton = document.getElementById("manualButton");
 const tableBtnText = document.getElementById("tableBtnText")
 const saveAndSubmitBtn = document.getElementById('saveSection');
+var tRow = new Array();
 
 var rowCount = 0;
 
@@ -163,13 +149,15 @@ function createTable(data) {
     headerRow.appendChild(deleteHeader);
 	
     tableBtnText.style.display = "block";
+
 	if (items.length == 0) {
         tableBtnText.innerHTML = "couldn't find any products, please enter manually";
-        addRow(); 
+        addRow();
     }
     else{
         tableBtnText.innerHTML = "please enter any missing items/fields";
     }
+
     for (var i = 0; i < items.length; i++) {
 	    itm = items[i]["valueObject"];
 		
@@ -226,6 +214,7 @@ manualButton.addEventListener("click", function(){
     //create table
     saveAndSubmitBtn.style.display = "flex";
     addRowBtn.style.display="block";
+    manualButton.style.display="none";
     addRow();
 });
 
