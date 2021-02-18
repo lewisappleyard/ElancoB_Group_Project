@@ -98,8 +98,9 @@ submitRebate.addEventListener("click", function(){//submit rebate button
             }
         }
         //save table as a whole pass into node function
-        frm = new FormData();
-	    frm.append('table', tableVariables);    
+        //frm = new FormData();
+
+        frm.append('table', JSON.stringify(tableVariables));
 
         $.ajax({
             url: "/savelist",

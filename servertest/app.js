@@ -15,24 +15,6 @@ const DBUSER = process.env.DBUSER;
 const DBPASSWORD = process.env.DBPASSWORD;
 const DBIP = process.env.DBIP;
 
-const conn = mariadb.createConnection({
-      host: DBHOST,
-      user: DBUSER,
-      password: DBPASSWORD
-    });
-const pool = mariadb.createPool({
-    host: DBIP,
-    user: DBUSER,
-    password: DBPASSWORD,
-    database: "savelist"
-});
-  app.connect(err => {
-    if (err) {
-      console.log("not connected due to error: " + err);
-    } else {
-      console.log("connected ! connection id is " + conn.threadId);
-    }
-});
 
 const PORT = process.env.PORT;
 const AZURE_ENDPOINT = process.env.AZURE_ENDPOINT;
@@ -60,39 +42,44 @@ function sleep(ms) {
         setTimeout(resolve, ms);
     });
 }
+const connection = mariadb.createConnection({ host: DBIP, user: DBUSER, password: DBPASSWORD });
 
 app.post('/savelist', async (req, res) => {
+    console.log(req.body.table);
+
     try {
-        var tableVariables = req.files.table;
+        var tableVariables = JSON.parse(req.body.table);
 
         var username = tableVariables.user;
         var prodName = ""; 
         var prodPrice = "";
         var prodDate = "";
 
-        console.log(tableVariables);
-
+        //console.log(tableVariables);
         for(item in tableVariables.items){
             // set the values here
-            prodName = item.name;
-            prodPrice = item.price;
-            prodDate = item.date;
+            prodName = tableVariables.items[item].name;
+            prodPrice = tableVariables.items[item].price;
+            prodDate = tableVariables.items[item].date;
 
+            //console.log(prodDate);
+            
             var query = "INSERT INTO savelist (user, value1, value2, value3) VALUES " + username + "," + prodName + "," + prodPrice + "," + prodDate + ";";
-            var rows = await conn.query(query);
             console.log(query);
+      
+            await connection.query(query);
         }
         // execute the query and set the result to a new variable
-
+        res.json({"error":false});
 
         // return the results
     } catch (err) {
         res.json({"error":true});
         
-        console.log("Summats tha matter. Tha's got a prob wi it m88");
+        console.log("Error with SQL database call");
         throw err;
     } finally {
-        if (conn) {return conn.release();}
+        if (connection) {return connection.end();}
     }
 });
 
