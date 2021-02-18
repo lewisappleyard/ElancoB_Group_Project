@@ -5,8 +5,19 @@ const previewContainer = document.getElementById("imagePreview");
 const previewImage = previewContainer.querySelector(".image-preview__image");
 const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
 
+var userSelection = document.getElementById("userOptionSelect");
+
 submitRebate.addEventListener("click", function(){//submit rebate button
-    alert("rebate submitted, thank you");
+    //alert("rebate submitted, thank you");
+
+    if (userSelection.value == "")
+    {
+        alert("No user profile selected to save to.\nPlease select a user profile.")
+    }
+    else
+    {
+        //This is where the current table can be saved to the selected user profile.
+    }
 });
 
 inpFile.addEventListener("change", function(){//scan image button (inpfile)
