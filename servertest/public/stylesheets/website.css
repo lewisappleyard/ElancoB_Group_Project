@@ -235,6 +235,7 @@ footer{
 
 
 
+
 @media only screen and (min-width: 768px){
   #titleContainer{
     display:flex;
@@ -273,15 +274,16 @@ footer{
     max-height:50%;
   }
 
-  th{
+  #headerId{
+    justify-content: center;
+   }
+   #headerId th{
     display:flex;
     border:1px;
     justify-content:center;
     padding-top:6px;
     padding-bottom:2px;
-  }
-
-  
-
-
+    padding-left:61px;
+    padding-right:61px;
+   }
 }
