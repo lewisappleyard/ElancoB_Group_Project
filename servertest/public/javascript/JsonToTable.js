@@ -115,8 +115,6 @@ function promptDownload(saveJSONString) {
     document.body.removeChild(element);
 }
 
-var test = {}
-
 function createTable(data) {
     console.log(data);
     var table = document.getElementById("receiptTable");
@@ -129,7 +127,9 @@ function createTable(data) {
     items = "Items" in receipt ? receipt["Items"]["valueArray"] : [];
 	
     // Before adding the items, add a header to the table to name the columns
-    var headerRow = newBody.insertRow();
+    var headerRow = newBody.insertRow()
+    headerRow.id = "headerId";
+    //console.log(headerRow.id);
 
     var itemHeader = document.createElement("th");
     itemHeader.appendChild(document.createTextNode("Product"));
@@ -141,7 +141,7 @@ function createTable(data) {
     dateHeader.appendChild(document.createTextNode("Date"));
 
     var deleteHeader = document.createElement("th");
-    deleteHeader.appendChild(document.createTextNode("Delete"));
+    deleteHeader.appendChild(document.createTextNode(" "));
 
     headerRow.appendChild(itemHeader);
     headerRow.appendChild(priceHeader);
@@ -156,6 +156,7 @@ function createTable(data) {
     else{
         tableBtnText.innerHTML = "please enter any missing items/fields";
     }
+
     for (var i = 0; i < items.length; i++) {
 	    itm = items[i]["valueObject"];
 		
