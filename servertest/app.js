@@ -5,13 +5,40 @@ const express = require('express');
 const fileUpload = require('express-fileupload');
 const fetch = require('node-fetch');
 const path = require('path');
+const mariadb = require('mariadb/callback');
+
+const app = express();
+
+
+const DBHOST = process.env.DBHOST;
+const DBUSER = process.env.DBUSER;
+const DBPASSWORD = process.env.DBPASSWORD;
+const DBIP = process.env.DBIP;
+
+const conn = mariadb.createConnection({
+      host: DBHOST,
+      user: DBUSER,
+      password: DBPASSWORD
+    });
+const pool = mariadb.createPool({
+    host: DBIP,
+    user: DBUSER,
+    password: DBPASSWORD,
+    database: "savelist"
+});
+  app.connect(err => {
+    if (err) {
+      console.log("not connected due to error: " + err);
+    } else {
+      console.log("connected ! connection id is " + conn.threadId);
+    }
+});
 
 const PORT = process.env.PORT;
 const AZURE_ENDPOINT = process.env.AZURE_ENDPOINT;
 const AZURE_KEY = process.env.AZURE_KEY;
 const DEBUG = process.env.DEBUG;
 
-const app = express();
 
 if (DEBUG) {
     app.all('/*', function(req, res, next) {
@@ -33,6 +60,42 @@ function sleep(ms) {
         setTimeout(resolve, ms);
     });
 }
+
+app.post('/savelist', async (req, res) => {
+    try {
+        var tableVariables = req.files.table;
+
+        var username = tableVariables.user;
+        var prodName = ""; 
+        var prodPrice = "";
+        var prodDate = "";
+
+        console.log(tableVariables);
+
+        for(item in tableVariables.items){
+            // set the values here
+            prodName = item.name;
+            prodPrice = item.price;
+            prodDate = item.date;
+
+            var query = "INSERT INTO savelist (user, value1, value2, value3) VALUES " + username + "," + prodName + "," + prodPrice + "," + prodDate + ";";
+            var rows = await conn.query(query);
+            console.log(query);
+        }
+        // execute the query and set the result to a new variable
+
+
+        // return the results
+    } catch (err) {
+        res.json({"error":true});
+        
+        console.log("Summats tha matter. Tha's got a prob wi it m88");
+        throw err;
+    } finally {
+        if (conn) {return conn.release();}
+    }
+});
+
 
 // app.get('/', function(req, res) {
     // res.sendFile(path.join(__dirname + '/public/index.html'));

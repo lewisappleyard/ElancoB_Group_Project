@@ -68,6 +68,8 @@ $("#table-button").on('click',(function(e) {
     });
 }));
 
+
+
 saveBtn.addEventListener("click", function() {
     console.log("Save pressed")
 
@@ -76,22 +78,57 @@ saveBtn.addEventListener("click", function() {
 });
 
 submitRebate.addEventListener("click", function(){//submit rebate button
-    //alert("rebate submitted, thank you");
+    var userOptionSelect = document.getElementById("userOptionSelect");
+    if(userOptionSelect.value != ""){
+        var tableVariables = {
+            "user": "",
+            "items": [{}]
+        };
 
-    if (userSelection.value == "")
-    {
-        alert("No user profile selected to save to.\nPlease select a user profile.")
-    }
-    else
-    {
-        //This is where the current table can be saved to the selected user profile.
+        tableVariables.user = userOptionSelect.value;
+
+        for (row in tRow) {
+            if (tRow[row].id != "DELETED") {
+                var prodName = document.getElementById("name".concat(row)).value;
+                var prodPrice = document.getElementById("price".concat(row)).value;
+                var prodDate = document.getElementById("date".concat(row)).value;
+                console.log(row);
+                tableVariables.items[row] = {"name":prodName, "date":prodDate, "price":prodPrice};
+                console.log(tableVariables);
+            }
+        }
+        //save table as a whole pass into node function
+        frm = new FormData();
+	    frm.append('table', tableVariables);    
+
+        $.ajax({
+            url: "/savelist",
+            type: "POST",
+            data: frm,
+            contentType: false,
+            cache: false,
+            processData: false,
+
+            beforeSend : function() {
+            },
+            success: function(data) {
+                //console.log(data);
+                if("error" in data && data.error == true){
+                    alert("Rebate failed to submit please try again");
+                }else{
+                    alert("Rebate has been successfully submitted");
+                }
+            },
+            error: function(e) {
+                alert("Rebate failed to submit please try again (error in calling)");
+            }     
+
+        })
+        
+    }else{
+        alert("please select a user to save");
     }
 });
-
-// This function will eventually do some checks on the returned JSON file so that it is in the correct formatting
-function checkReturned(arrayData) {
-    
-}
 
 // This is where the table is saved, will work for now but needs possible data verification to validate values, example being the date and price being in the correct format, etc.
 function saveTable() {
