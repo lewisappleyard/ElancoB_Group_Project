@@ -68,7 +68,7 @@ app.post('/savelist', async (req, res) => {
 
             //console.log(prodDate);
             
-            var query = "INSERT INTO savelist (user, value1, value2, value3) VALUES " + username + "," + prodName + "," + prodPrice + "," + prodDate + ";";
+            var query = "INSERT INTO savelist (user, value1, value2, value3) VALUES '" + username + "','" + prodName + "','" + prodPrice + "','" + prodDate + "';";
             console.log(query);
       
             await connection.query(query);
